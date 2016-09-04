@@ -15,6 +15,7 @@ public class Run {
 		testMazeGenerator(new SimpleMaze3dGenerator());
 		testMazeGenerator(new GrowingTreeGenerator(new cellRandomSelector()));
 		testMazeGenerator(new GrowingTreeGenerator(new cellLastSelector()));
+		System.out.println("test");
 			
 	}
 private static void testMazeGenerator(Maze3dGenerator mg){ 
