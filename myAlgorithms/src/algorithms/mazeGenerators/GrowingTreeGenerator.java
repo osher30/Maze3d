@@ -60,7 +60,8 @@ public class GrowingTreeGenerator extends Maze3dGeneratorBase {
 	private Random rand = new Random();
 	private Position getRandomPosition(Maze3d maze){
 		int z = rand.nextInt(maze.getFloor()-2) + 1;
-		while(z % 2 == 0){
+		//while(z % 2 == 0){
+		while(z == 0 || z == maze.getFloor()-2){
 			z = rand.nextInt(maze.getFloor()-2) + 1;
 		}
 		int y = rand.nextInt(maze.getRow()-2)+1;

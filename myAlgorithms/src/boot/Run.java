@@ -8,14 +8,12 @@ import algorithms.mazeGenerators.SimpleMaze3dGenerator;
 import algorithms.mazeGenerators.cellLastSelector;
 import algorithms.mazeGenerators.cellRandomSelector;
 
-
 public class Run {
 
 	public static void main(String[] args) {
 		testMazeGenerator(new SimpleMaze3dGenerator());
 		testMazeGenerator(new GrowingTreeGenerator(new cellRandomSelector()));
 		testMazeGenerator(new GrowingTreeGenerator(new cellLastSelector()));
-		System.out.println("test");
 			
 	}
 private static void testMazeGenerator(Maze3dGenerator mg){ 
@@ -57,7 +55,7 @@ private static void testMazeGenerator(Maze3dGenerator mg){
 				System.out.print("\n");
 			}
 			
-			int[][] maze2dz=maze.getCrossSectionByZ(2); 
+			int[][] maze2dz=maze.getCrossSectionByZ(1); 
 			System.out.println("new maze 2d by floors:" );
 			for(int y=0;y<maze.getRow();y++){
 				for(int x=0;x<maze.getCols();x++)

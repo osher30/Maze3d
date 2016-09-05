@@ -135,8 +135,11 @@ public class Maze3d {
 		{	
 		for(int z=0;z<floor;z++)
 			for(int x=0;x<cols;x++)
-				temp[z][x] = maze[z][x][constant];
+				temp[z][x] = maze[z][constant][x];
 		}
+		else{
+			throw new IndexOutOfBoundsException();
+			}
 		return temp;
 	}
 	
@@ -147,12 +150,11 @@ public class Maze3d {
 		{	
 		for(int y=0;y<row;y++)
 			for(int x=0;x<cols;x++)
-				temp[y][x] = maze[y][x][constant];
+				temp[y][x] = maze[constant][y][x];
 		}
 		else{
 			throw new IndexOutOfBoundsException();
 			}
-		
 		return temp;
 	}
 	
