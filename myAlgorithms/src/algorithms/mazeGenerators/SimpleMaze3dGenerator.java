@@ -7,7 +7,7 @@ public class SimpleMaze3dGenerator extends Maze3dGeneratorBase {
 	public Maze3d generate(int floor, int row, int cols) {
 		Maze3d temp =new Maze3d(floor,row,cols);
 		temp.setStartPosition(new Position(1, 1, 1));
-		temp.setGoallPosition(new Position(temp.getFloor()-2, temp.getRow()-1, temp.getCols()
+		temp.setGoalPosition(new Position(temp.getFloor()-2, temp.getRow()-1, temp.getCols()
 				-2));
 		int [][][] maz = temp.getMaze3d();
 		for(int z=0;z<temp.getFloor();z++)
