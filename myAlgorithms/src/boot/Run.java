@@ -24,7 +24,7 @@ public class Run {
 		*/
 		Maze3d maze;
 		Maze3dGenerator s = new GrowingTreeGenerator(new cellRandomSelector());
-		maze = s.generate(5, 5, 5);
+		maze = s.generate(4, 7, 7);
 		System.out.println(maze);
 		
 		// save it to a file
@@ -34,7 +34,8 @@ public class Run {
 							new FileOutputStream("1.maz"));
 					byte[] arr = maze.toByteArray();
 					
-					out.write(arr.length);
+					out.write(arr.length/255);
+					out.write(arr.length%255);
 					out.write(arr);
 					out.flush();
 					out.close();
@@ -45,14 +46,13 @@ public class Run {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				
-				
+						
 		//load data from file
 				InputStream in;
 				try {
 					in = new MyDecompressorInputStream(
 							new FileInputStream("1.maz"));
-					int size = in.read();
+					int size = (in.read()*255) + in.read();
 					System.out.println(size); //check
 					byte b[]=new byte[size];
 					in.read(b);
