@@ -1,21 +1,76 @@
 package boot;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.Position;
-import algorithms.mazeGenerators.SimpleMaze3dGenerator;
-import algorithms.mazeGenerators.cellLastSelector;
 import algorithms.mazeGenerators.cellRandomSelector;
+import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 
 public class Run {
 
 	public static void main(String[] args) {
-		testMazeGenerator(new SimpleMaze3dGenerator());
+		/*testMazeGenerator(new SimpleMaze3dGenerator());
 		testMazeGenerator(new GrowingTreeGenerator(new cellRandomSelector()));
 		testMazeGenerator(new GrowingTreeGenerator(new cellLastSelector()));
-			
+		*/
+		Maze3d maze;
+		Maze3dGenerator s = new GrowingTreeGenerator(new cellRandomSelector());
+		maze = s.generate(5, 5, 5);
+		System.out.println(maze);
+		
+		// save it to a file
+				OutputStream out;
+				try {
+					out = new MyCompressorOutputStream(
+							new FileOutputStream("1.maz"));
+					byte[] arr = maze.toByteArray();
+					
+					out.write(arr.length);
+					out.write(arr);
+					out.flush();
+					out.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+		//load data from file
+				InputStream in;
+				try {
+					in = new MyDecompressorInputStream(
+							new FileInputStream("1.maz"));
+					int size = in.read();
+					System.out.println(size); //check
+					byte b[]=new byte[size];
+					in.read(b);
+					in.close();	
+					
+					Maze3d loaded = new Maze3d(b);
+					System.out.println("maze loaded from file:");
+					System.out.println(loaded);
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 	}
+	
 private static void testMazeGenerator(Maze3dGenerator mg){ 
 		//prints the time it takes the algorithm to run
 		System.out.print("time it takes the algorithm to run : ");
@@ -36,7 +91,7 @@ private static void testMazeGenerator(Maze3dGenerator mg){
 			System.out.println(move);}
 		// prints the maze exit position 
 		System.out.println("maze goal position : " + 
-		maze.getGoallPosition());
+		maze.getGoalPosition());
 
 		try {
 			// get 2d cross sections of the 3d maze

@@ -17,7 +17,7 @@ public class Demo {
 		Maze3d maze = generator.generate(8, 8, 8);
 		System.out.println(maze);
 		System.out.println("Start position is :" + maze.getStartPosition());
-		System.out.println("Goal Position is :" + maze.getGoallPosition());
+		System.out.println("Goal Position is :" + maze.getGoalPosition());
 		MazeAdapter adapter = new MazeAdapter(maze);
 		BFS<Position> bfs = new BFS<Position>();		
 		Solution<Position> solBfs =bfs.search(adapter);

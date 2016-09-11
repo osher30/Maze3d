@@ -7,19 +7,40 @@ import java.util.List;
 public class Maze3d {
 	private int [][][] maze3d;
 	private int cols;
-	private int row;
+	private int rows;
 	private int floor;
 	private Position StartPosition;
-	private Position GoallPosition;
+	private Position GoalPosition;
 	
 	public final static int FREE = 0;
 	public final static int WALL = 1;
 	
+	public Maze3d(byte[] arr) {
+		int k = 0;
+		this.floor = arr[k++];
+		this.rows = arr[k++];
+		this.cols = arr[k++];
+		maze3d = new int[floor][rows][cols];		
+		
+		Position startPos = new Position(arr[k++],arr[k++], arr[k++]);
+		this.setStartPosition(startPos);
+		Position goalPos = new Position(arr[k++],arr[k++], arr[k++]);
+		this.setGoalPosition(goalPos);
+		
+		for (int z = 0; z < floor; z++) {
+		for (int y = 0; y < rows; y++) {
+			for (int x = 0; x < cols; x++) {
+				maze3d[z][y][x] = arr[k++];
+			}			
+		}
+		}
+	}
+	
 	public Maze3d(int originalfloor,int originalrow,int originalcols){
 		this.floor = originalfloor+2;
-		this.row = originalrow*2+1;
+		this.rows = originalrow*2+1;
 		this.cols = originalcols*2+1;
-		maze3d=new int[floor][row][cols];
+		maze3d=new int[floor][rows][cols];
 	}
 	public void setFreeCell(Position pos){
 		maze3d[pos.z][pos.y][pos.x] = FREE;
@@ -38,12 +59,12 @@ public class Maze3d {
 		this.StartPosition = start;
 	}
 
-	public Position getGoallPosition() {
-		return GoallPosition;
+	public Position getGoalPosition() {
+		return GoalPosition;
 	}
 
-	public void setGoallPosition(Position end) {
-		this.GoallPosition = end;
+	public void setGoalPosition(Position end) {
+		this.GoalPosition = end;
 	}
 
 	public int[][][] getMaze3d() {
@@ -55,7 +76,7 @@ public class Maze3d {
 	}
 
 	public int getRow() {
-		return row;
+		return rows;
 	}
 
 	public int getFloor() {
@@ -74,7 +95,7 @@ public class Maze3d {
 		if(pos.y>0 && maze3d[pos.z][pos.y-1][pos.x] == FREE)
 			moves.add(new Position(pos.z, pos.y-1, pos.x));
 		
-		if(pos.y<row-1 && maze3d[pos.z][pos.y+1][pos.x] == FREE)
+		if(pos.y<rows-1 && maze3d[pos.z][pos.y+1][pos.x] == FREE)
 			moves.add(new Position(pos.z, pos.y+1, pos.x));
 		
 		if(pos.z>0 && maze3d[pos.z-1][pos.y][pos.x] == FREE)
@@ -90,13 +111,13 @@ public class Maze3d {
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		for (int z = 0;z<floor;z++){
-			for(int y = 0;y<row;y++){
+			for(int y = 0;y<rows;y++){
 				for(int x = 0;x<cols;x++){
 					if(z == StartPosition.z && y == StartPosition.y && x == StartPosition.x){
 						sb.append("E");
 						sb.append(" ");
 					}
-					else if (z == GoallPosition.z && y == GoallPosition.y && x == GoallPosition.x){
+					else if (z == GoalPosition.z && y == GoalPosition.y && x == GoalPosition.x){
 						sb.append("X");
 						sb.append(" ");
 					}
@@ -114,11 +135,11 @@ public class Maze3d {
 	
 	public int[][] getCrossSectionByX(int constant) {
 		int [][][] maze = this.getMaze3d();
-		int [][]temp = new int[floor][row];
+		int [][]temp = new int[floor][rows];
 		if(constant>=0 && constant<cols)
 		{	
 		for(int z=0;z<floor;z++)
-			for(int y=0;y<row;y++)
+			for(int y=0;y<rows;y++)
 				temp[z][y] = maze[z][y][constant];
 		}
 		else{
@@ -131,7 +152,7 @@ public class Maze3d {
 	public int[][] getCrossSectionByY(int constant) {
 		int [][][] maze = this.getMaze3d();
 		int [][]temp = new int[floor][cols];
-		if(constant>=0 && constant<row)
+		if(constant>=0 && constant<rows)
 		{	
 		for(int z=0;z<floor;z++)
 			for(int x=0;x<cols;x++)
@@ -145,10 +166,10 @@ public class Maze3d {
 	
 	public int[][] getCrossSectionByZ(int constant) {
 		int [][][] maze = this.getMaze3d();
-		int [][]temp = new int[row][cols];
+		int [][]temp = new int[rows][cols];
 		if(constant>=0 && constant<floor)
 		{	
-		for(int y=0;y<row;y++)
+		for(int y=0;y<rows;y++)
 			for(int x=0;x<cols;x++)
 				temp[y][x] = maze[constant][y][x];
 		}
@@ -202,6 +223,32 @@ public class Maze3d {
 		}
 		String[] moves = Arrays.copyOf(temp, index);
 		return moves;
+	}
+	
+	public byte[] toByteArray() {
+		ArrayList<Byte> arr = new ArrayList<Byte>();
+		arr.add((byte)floor);
+		arr.add((byte)rows);
+		arr.add((byte)cols);
+		arr.add((byte)StartPosition.z);
+		arr.add((byte)StartPosition.y);
+		arr.add((byte)StartPosition.x);
+		arr.add((byte)GoalPosition.z);
+		arr.add((byte)GoalPosition.y);
+		arr.add((byte)GoalPosition.x);
+		
+		for(int z=0;z<floor;z++){
+		for (int y = 0; y < rows; y++) {
+			for (int x = 0; x < cols; x++) {
+				arr.add((byte)maze3d[z][y][x]);
+			}			
+		}
+		}
+		byte[] bytes = new byte[arr.size()];
+		for (int i = 0; i < bytes.length; i++) {
+			bytes[i] = (byte)arr.get(i);
+		}
+		return bytes;
 	}
 	
 }

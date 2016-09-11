@@ -34,7 +34,7 @@ public class MazeAdapter implements Searchable<Position> {
 	 */
 	@Override
 	public State<Position> getGoalState() {
-		Position goalPos = maze.getGoallPosition();
+		Position goalPos = maze.getGoalPosition();
 		State <Position> goalState = new State<Position> (goalPos);
 		return goalState;
 	}

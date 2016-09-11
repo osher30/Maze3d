@@ -41,7 +41,7 @@ public class GrowingTreeGenerator extends Maze3dGeneratorBase {
 			cells.remove(pos);
 		}
 		Position EndPos = setRandomGoal(maze);
-		maze.setGoallPosition(EndPos);
+		maze.setGoalPosition(EndPos);
 		//System.out.println(maze.toString());
 		return maze;
 	}
