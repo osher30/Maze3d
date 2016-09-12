@@ -24,16 +24,16 @@ public class Run {
 		*/
 		Maze3d maze;
 		Maze3dGenerator s = new GrowingTreeGenerator(new cellRandomSelector());
-		maze = s.generate(5, 5, 5);
+		maze = s.generate(10, 50, 50);
 		System.out.println(maze);
-		
+		int time=0;
 		// save it to a file
 				OutputStream out;
 				try {
 					out = new MyCompressorOutputStream(
 							new FileOutputStream("1.maz"));
 					byte[] arr = maze.toByteArray();
-					
+		
 					out.write(arr.length/255);
 					out.write(arr.length%255);
 					out.write(arr);

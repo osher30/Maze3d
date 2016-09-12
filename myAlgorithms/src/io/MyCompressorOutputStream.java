@@ -42,13 +42,11 @@ public class MyCompressorOutputStream extends OutputStream {
 				count++;
 			}
 		}
-		while (count >= 127) {
+		while (count >= 0) {
 		out.write(127);
 		out.write(currByte);
 		count -= 127;
 		}
-		out.write(count);
-		out.write(currByte);
 	}
 
 }
