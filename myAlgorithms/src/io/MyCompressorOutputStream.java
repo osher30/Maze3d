@@ -25,13 +25,13 @@ public class MyCompressorOutputStream extends OutputStream {
 	public void write(byte[] arr) throws IOException {
 		byte currByte = arr[0];
 		int count = 1;
-		
+	
 		for (int i = 1; i < arr.length; i++) {
 			if (arr[i] != currByte) {
-				while (count >= 255) {
-					out.write(255);
+				while (count >= 127) {
+					out.write(127);
 					out.write(currByte);
-					count -= 255;
+					count -= 127;
 				}
 				out.write(count);
 				out.write(currByte);
@@ -42,9 +42,13 @@ public class MyCompressorOutputStream extends OutputStream {
 				count++;
 			}
 		}
+		while (count >= 127) {
+		out.write(127);
+		out.write(currByte);
+		count -= 127;
+		}
 		out.write(count);
 		out.write(currByte);
-		
 	}
 
 }

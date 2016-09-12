@@ -24,7 +24,7 @@ public class Run {
 		*/
 		Maze3d maze;
 		Maze3dGenerator s = new GrowingTreeGenerator(new cellRandomSelector());
-		maze = s.generate(4, 7, 7);
+		maze = s.generate(5, 5, 5);
 		System.out.println(maze);
 		
 		// save it to a file
