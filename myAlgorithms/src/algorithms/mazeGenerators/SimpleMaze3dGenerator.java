@@ -25,5 +25,11 @@ public class SimpleMaze3dGenerator extends Maze3dGeneratorBase {
 		return temp;
 	}
 
+	@Override
+	public void setDone(boolean isdone) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

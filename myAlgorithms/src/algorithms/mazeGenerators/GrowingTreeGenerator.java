@@ -147,5 +147,10 @@ public class GrowingTreeGenerator extends Maze3dGeneratorBase {
 			return pos;
 			
 		}
+		@Override
+		public void setDone(boolean isdone) {
+			// TODO Auto-generated method stub
+			
+		}
 
 	}
