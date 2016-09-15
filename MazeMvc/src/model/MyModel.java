@@ -116,7 +116,7 @@ public class MyModel implements Model {
 			in.close();	
 			
 			name = new Maze3d(b);
-			mazes.add(name);
+			mazes.add(name); //need to add to mazes
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
