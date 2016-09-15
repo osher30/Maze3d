@@ -116,9 +116,7 @@ public class MyModel implements Model {
 			in.close();	
 			
 			name = new Maze3d(b);
-			System.out.println("maze loaded from file:");
-			System.out.println(name);
-			
+			mazes.add(name);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
