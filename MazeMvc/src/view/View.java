@@ -12,6 +12,9 @@ public interface View {
 	void setCommands(HashMap<String, Command> commands);
 	void start();	
 	void setController(Controller controller);
+	int askForXYZ();
+	void displayCrossSection(Maze3d maze, int index); 
+	void displaySolution(String name);
 }
 
 /*

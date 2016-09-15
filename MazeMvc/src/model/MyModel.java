@@ -1,15 +1,27 @@
 package model;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import algorithms.demo.MazeAdapter;
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Maze3dGenerator;
+import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.cellRandomSelector;
+import algorithms.serach.Searcher;
+import algorithms.serach.Solution;
 import controller.Controller;
+import io.MyCompressorOutputStream;
+import io.MyDecompressorInputStream;
 
 public class MyModel implements Model {
 	
@@ -68,6 +80,58 @@ public class MyModel implements Model {
 		for (GenerateMazeRunnable task : generateMazeTasks) {
 			task.terminate();
 		}
+	}
+	
+	public void saveMaze(Maze3d name, String fileName)
+	{
+		OutputStream out;
+		try {
+			out = new MyCompressorOutputStream(
+					new FileOutputStream("fileName"));
+			byte[] arr = name.toByteArray();
+			
+			out.write(arr.length/127);
+			out.write(arr.length%127);
+			out.write(arr);
+			out.flush();
+			out.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void loadMaze(String fileName, Maze3d name)
+	{
+		InputStream in;
+		try {
+			in = new MyDecompressorInputStream(
+					new FileInputStream("fileName"));
+			int size = (in.read()*255) + in.read();
+			byte b[]=new byte[size];
+			in.read(b);
+			in.close();	
+			
+			name = new Maze3d(b);
+			System.out.println("maze loaded from file:");
+			System.out.println(name);
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void solveMaze(Maze3d name, Searcher<Position> algo)
+	{
+		MazeAdapter adapter = new MazeAdapter(name);
+		Solution<Position> sol =algo.search(adapter);
 	}
 
 }
