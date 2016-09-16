@@ -7,6 +7,9 @@ import java.util.HashMap;
 
 import controller.Command;
 
+/**
+ * Command line interface. 
+ */
 public class CLI {
 	
 	private BufferedReader in;

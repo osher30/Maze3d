@@ -1,21 +1,35 @@
 package controller;
 
+import java.io.File;
 import java.util.HashMap;
 
 import algorithms.mazeGenerators.Maze3d;
 import model.Model;
 import view.View;
 
+/**
+ * Contain all the commands classes which implements Command interface 
+ * and override doCommand method.
+ */
 public class CommandsManager {
 	
 	private Model model;
 	private View view;
 		
+	/**
+	 *  The c'tor
+	 * @param model
+	 * @param view
+	 */
 	public CommandsManager(Model model, View view) {
 		this.model = model;
 		this.view = view;		
 	}
 	
+	/**
+	 * Contain all the commands objects as strings.
+	 * @return the commands hash map. 
+	 */
 	public HashMap<String, Command> getCommandsMap() {
 		HashMap<String, Command> commands = new HashMap<String, Command>();
 		commands.put("generate_maze", new GenerateMazeCommand());
@@ -24,10 +38,15 @@ public class CommandsManager {
 		commands.put("save_maze ", new SaveMaze()); 
 		commands.put("load_maze ", new LoadMaze());
 		commands.put("solve ", new solveMaze());
+		
 		return commands;
 	}
 	
-	public class GenerateMazeCommand implements Command {
+	/**
+	 * Create classes for every single command. 
+	 */
+	public class GenerateMazeCommand implements Command 
+	{
 
 		@Override
 		public void doCommand(String[] args) {
@@ -39,7 +58,8 @@ public class CommandsManager {
 		}		
 	}
 	
-	public class DisplayMazeCommand implements Command {
+	public class DisplayMazeCommand implements Command 
+	{
 
 		@Override
 		public void doCommand(String[] args) {
@@ -59,6 +79,7 @@ public class CommandsManager {
 			int index = Integer.parseInt(args[1]);
 			Maze3d maze = model.getMaze(name);
 			view.displayCrossSection(maze, index);
+			
 		}
 		
 	}
@@ -70,8 +91,9 @@ public class CommandsManager {
 		public void doCommand(String[] args) 
 		{
 			String name = args[0];
-			String fileName = args[1]; 
-			model.saveMaze(name, fileName);
+			Maze3d maze = model.getMaze(name);
+			String fileName = args[1];
+			model.saveMaze(maze, fileName);
 		}
 	}
 	
@@ -81,8 +103,8 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) 
 		{
-			String name = args[0]; 
-			String fileName = args[1]; 
+			String name = args[0];
+			String fileName = args[1];
 			model.loadMaze(name, fileName);
 		}
 	}
@@ -100,5 +122,19 @@ public class CommandsManager {
 		}
 	}
 	
+	public class dir implements Command
+	{	
+		@Override
+		public void doCommand(String[] args) 
+		{
+			if(args.length == 0){
+				view.displayMessage("Invalid path");
+			}
+			else{
+				model.getDirList(args[0]);
+			}
+		}
+	}
 	
-}
+	}
+

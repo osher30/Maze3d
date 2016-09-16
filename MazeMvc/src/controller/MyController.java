@@ -3,6 +3,9 @@ package controller;
 import model.Model;
 import view.View;
 
+/**
+ * Implementation of controller interface.  
+ */
 public class MyController implements Controller {
 
 	private View view;
@@ -10,7 +13,7 @@ public class MyController implements Controller {
 	private CommandsManager commandsManager;
 	
 	/**
-	 * Controller c'tor
+	 * Controller c'tor.
 	 * @param view
 	 * @param model
 	 */
@@ -26,5 +29,15 @@ public class MyController implements Controller {
 	public void notifyMazeIsReady(String name) {
 		view.notifyMazeIsReady(name);
 	}
+
+	/**
+	 * Display every massage. 
+	 */
+	@Override
+	public void displayMessage(String msg) {
+		view.displayMessage(msg);
+	}
+
+
 
 }

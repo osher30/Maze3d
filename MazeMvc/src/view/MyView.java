@@ -12,7 +12,12 @@ import algorithms.serach.DFS;
 import algorithms.serach.Solution;
 import controller.Command;
 import controller.Controller;
+import model.Model;
+import model.MyModel;
 
+/**
+ * The mvc view. 
+ */
 public class MyView implements View {
 	
 	private BufferedReader in;
@@ -108,21 +113,14 @@ public void displayCrossSection (Maze3d maze, int index)
 		}
 	}
 	
-	public void displaySolution(Maze3d name)
+	/**
+	 * Display data to user with the output source
+	 * @param msg - The message to display
+	 */
+	@Override
+	public void displayMessage(String msg) 
 	{
-		Scanner scanner = new Scanner (System.in);
-		int answer; 
-		System.out.println("Enter 1 if you want to solve by BFS");
-		System.out.println("Enter 2 if you want to solve by DFS");
-		answer = scanner.nextInt();
-		if(answer == 1) {
-			BFS<Position> bfs = new BFS<Position>();
-		}
-		else if(answer == 2) {
-			DFS<Position> dfs = new DFS<Position>();
-		}
-		else {
-			System.out.println("wrong input");
-		}
+			out.println(msg);
+			out.flush();	
 	}
 }
