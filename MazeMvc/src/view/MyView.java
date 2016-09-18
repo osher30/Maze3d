@@ -1,6 +1,7 @@
 package view;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -122,5 +123,48 @@ public void displayCrossSection (Maze3d maze, int index)
 	{
 			out.println(msg);
 			out.flush();	
+	}
+
+	@Override
+	public void displaySolution(String name) {
+		// TODO Auto-generated method stub
+		//Solution<Position> sol = getMazesSolutions(name);
+	}
+	
+	
+	
+	// Auxiliary function
+			private static String _fileType(File f){
+				if(f.isFile()){
+					return "<File>";
+				}
+				return "<Directory>";
+			}
+	
+	/**
+	 * Get the list of directories and files of given path
+	 * @param path - the file system path to present
+	 */
+	@Override
+	public void getDirList(String path) 
+	{
+		File dir = new File(path);
+		// check path exist
+		if(!dir.exists()){
+			controller.displayMessage("No such file or directory");
+			return;
+		}
+		File[] files = dir.listFiles();
+		// check that path is not empty
+		if (files.length == 0) {
+			controller.displayMessage("The directory is empty");
+		} 
+		else 
+		{
+		    for (File iterFile : files) 
+		    {
+		    	controller.displayMessage(_fileType(iterFile) + " - " + iterFile.getName());
+		    }
+		}
 	}
 }

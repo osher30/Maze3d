@@ -36,6 +36,7 @@ public class CommandsManager {
 		commands.put("save_maze", new SaveMaze()); 
 		commands.put("load_maze", new LoadMaze());
 		commands.put("solve", new solveMaze());
+		commands.put("dir", new dir());
 		
 		return commands;
 	}
@@ -129,7 +130,7 @@ public class CommandsManager {
 				view.displayMessage("Invalid path");
 			}
 			else{
-				model.getDirList(args[0]);
+				view.getDirList(args[0]);
 			}
 		}
 	}

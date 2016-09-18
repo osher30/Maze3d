@@ -61,7 +61,8 @@ public class MyModel implements Model {
 	
 	private Controller controller;
 	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
-	private Map<String,Solution> mazesSolutions;
+	private Map<String,Solution> mazesSolutions = new ConcurrentHashMap<String, Solution>();
+
 	private List<Thread> threads = new ArrayList<Thread>();
 	
 	public void setController(Controller controller){
@@ -165,7 +166,8 @@ public class MyModel implements Model {
 					return;
 				}
 				Solution<Position> solution = searchAlgo.search(new MazeAdapter(maze));
-				getMazesSolutions().put(name, solution);
+				mazesSolutions.put(name, solution);
+				//getMazesSolutions().put(name, solution);
 				controller.displayMessage(String.format("Solution for %s is ready.", name));
 			}	
 	 	});
@@ -173,50 +175,12 @@ public class MyModel implements Model {
 		threads.add(thread);		
 	}
 	
-		// Auxiliary function
-		private static String _fileType(File f){
-			if(f.isFile()){
-				return "<File>";
-			}
-			return "<Directory>";
-		}
+	
+	
+	public Map<String, Solution> getMazesSolutions() {
 		
-		
-		/**
-		 * Get the list of directories and files of given path
-		 * @param path - the file system path to present
-		 */
-		@Override
-		public void getDirList(String path) 
-		{
-			File dir = new File(path);
-			// check path exist
-			if(!dir.exists()){
-				controller.displayMessage("No such file or directory");
-				return;
-			}
-			File[] files = dir.listFiles();
-			// check that path is not empty
-			if (files.length == 0) {
-				controller.displayMessage("The directory is empty");
-			} 
-			else 
-			{
-			    for (File iterFile : files) 
-			    {
-			    	controller.displayMessage(_fileType(iterFile) + " - " + iterFile.getName());
-			    }
-			}
-		}
-			public Map<String, Solution> getMazesSolutions() {
-				
-				return mazesSolutions;
-			}
-			
-			public void setMazesSolutions(Map<String,Solution> mazesSolutions) {
-				this.mazesSolutions = mazesSolutions;
-			}
-			
+		return mazesSolutions;
+	}
 			/**
 			 * Show the way(steps) that use to solve to maze<br>
 			 * @param name - name of the maze that print his solution

@@ -9,7 +9,6 @@ import controller.Controller;
 public interface Model {
 	void generateMaze(String name,int floor, int rows, int cols);
 	Maze3d getMaze(String name);
-	void getDirList(String path);
 	void exit();
 	void setController(Controller controller);
 	void saveMaze(Maze3d name, String fileName);
