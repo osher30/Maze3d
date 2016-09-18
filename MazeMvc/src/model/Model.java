@@ -1,5 +1,5 @@
 package model;
-//
+
 import algorithms.mazeGenerators.Maze3d;
 import controller.Controller;
 
