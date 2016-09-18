@@ -1,8 +1,6 @@
 package controller;
 
-import java.io.File;
 import java.util.HashMap;
-
 import algorithms.mazeGenerators.Maze3d;
 import model.Model;
 import view.View;
@@ -34,10 +32,10 @@ public class CommandsManager {
 		HashMap<String, Command> commands = new HashMap<String, Command>();
 		commands.put("generate_maze", new GenerateMazeCommand());
 		commands.put("display", new DisplayMazeCommand());
-		commands.put("display_cross_section ", new DisplayCrossSectionCommand());
-		commands.put("save_maze ", new SaveMaze()); 
-		commands.put("load_maze ", new LoadMaze());
-		commands.put("solve ", new solveMaze());
+		commands.put("display_cross_section", new DisplayCrossSectionCommand());
+		commands.put("save_maze", new SaveMaze()); 
+		commands.put("load_maze", new LoadMaze());
+		commands.put("solve", new solveMaze());
 		
 		return commands;
 	}
@@ -113,7 +111,7 @@ public class CommandsManager {
 	{
 
 		@Override
-		public void doCommand(String[] args) 
+		public void doCommand(String[] args)
 		{
 			String name = args[0];
 			String algo = args[1]; 

@@ -89,13 +89,13 @@ public class MyModel implements Model {
 	{
 		OutputStream out = null;
 		try {
-			Maze3d maze = mazes.get(name);
+			Maze3d maze = name;//mazes.get(name);
 			if (maze == null) {
 				
 				controller.displayMessage("No such maze " + name);
 				return;
 			}
-			out = new MyCompressorOutputStream(new FileOutputStream("fileName"));
+			out = new MyCompressorOutputStream(new FileOutputStream(fileName));
 			new DataOutputStream(out).writeInt(maze.toByteArray().length);
 		    out.write(maze.toByteArray());
 		} catch (IOException e) {
@@ -116,7 +116,7 @@ public class MyModel implements Model {
 		InputStream in = null;
 		byte[] b = null;	  
 		try {
-			in = new MyDecompressorInputStream(new FileInputStream("fileName"));
+			in = new MyDecompressorInputStream(new FileInputStream(fileName));
 			b = new byte[new DataInputStream(in).readInt()];
 			 in.read(b);
 			 Maze3d maze = new Maze3d(b);

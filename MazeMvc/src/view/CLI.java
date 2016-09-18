@@ -42,6 +42,9 @@ public class CLI {
 					String arr[] = commandLine.split(" ");
 					String command = arr[0];
 					
+					if (command.equals("exit"))
+						break;
+					
 					if(!commands.containsKey(command)){
 						out.println("Command doesn't exist");
 					}
@@ -49,15 +52,13 @@ public class CLI {
 						String[] args = null;
 						if(arr.length > 1) {
 							String commandArgs = commandLine.substring
-									(commandLine.indexOf(" ") +1 );
+									(commandLine.indexOf(" ") +1 ); 
 							args = commandArgs.split(" ");
 						}
 						
 					Command cmd = commands.get(command);
 					cmd.doCommand(args);
 					
-					if (command.equals("exit"))
-						break;
 					}
 				}catch (IOException e){
 							e.printStackTrace();
