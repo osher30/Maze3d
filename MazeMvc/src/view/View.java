@@ -18,6 +18,6 @@ public interface View {
 	int askForXYZ();
 	void displayCrossSection(Maze3d maze, int index); 
 	void displayMessage(String msg);
-	void displaySolution(String name);
+	//void displaySolution(String name);
 	void getDirList(String path);
 }

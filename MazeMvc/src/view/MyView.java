@@ -77,11 +77,10 @@ public class MyView implements View {
 	
 public void displayCrossSection (Maze3d maze, int index)
 	{
-		int answer = askForXYZ();
+		//int answer = askForXYZ();
 		int[][] maze2d;
-		
-		if (answer == 1)
-		{
+		switch (index) {
+		case 1:
 			maze2d = maze.getCrossSectionByX(index);
 			for(int z = 0;z < maze.getFloor();z++)
 			{
@@ -89,28 +88,27 @@ public void displayCrossSection (Maze3d maze, int index)
 					System.out.print(maze2d[z][y]);
 				System.out.print("\n");
 			}
-		}
-		else if (answer == 2)
-		{
+			break;
+		case 2:
 			maze2d = maze.getCrossSectionByY(index);
 			for(int z = 0;z < maze.getFloor();z++){
 				for(int x = 0;x < maze.getCols();x++)
 					System.out.print(maze2d[z][x]);
 				System.out.print("\n");
 			}
-		}
-		else if (answer == 3) 
-		{
+			break;
+		case 3:
 			maze2d = maze.getCrossSectionByZ(index);
 			for(int y = 0;y < maze.getRow();y++){
 				for(int x = 0;x < maze.getCols();x++)
 					System.out.print(maze2d[y][x]);
 				System.out.print("\n");
 			}
-		}
-		else
-		{
-			System.out.println("The point isn't valid");
+			break;
+
+		default:
+			System.out.println("Invaild index");
+			break;
 		}
 	}
 	
@@ -124,14 +122,6 @@ public void displayCrossSection (Maze3d maze, int index)
 			out.println(msg);
 			out.flush();	
 	}
-
-	@Override
-	public void displaySolution(String name) {
-		// TODO Auto-generated method stub
-		//Solution<Position> sol = getMazesSolutions(name);
-	}
-	
-	
 	
 	// Auxiliary function
 			private static String _fileType(File f){

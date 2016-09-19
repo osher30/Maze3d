@@ -37,6 +37,8 @@ public class CommandsManager {
 		commands.put("load_maze", new LoadMaze());
 		commands.put("solve", new solveMaze());
 		commands.put("dir", new dir());
+		commands.put("exit", new exit());
+		commands.put("display_solution", new displaySolution());
 		
 		return commands;
 	}
@@ -77,7 +79,7 @@ public class CommandsManager {
 			String name = args[0];
 			int index = Integer.parseInt(args[1]);
 			Maze3d maze = model.getMaze(name);
-			view.displayCrossSection(maze, index);
+			view.displayCrossSection(maze ,index);
 			
 		}
 		
@@ -132,6 +134,25 @@ public class CommandsManager {
 			else{
 				view.getDirList(args[0]);
 			}
+		}
+	}
+	
+	public class exit implements Command
+	{
+		@Override
+		public void doCommand(String[] args)
+		{
+			model.exit();
+		}
+	}
+	
+	public class displaySolution implements Command
+	{
+		@Override
+		public void doCommand(String[]args)
+		{
+			String name = args[0];
+			model.displaySolution(name);
 		}
 	}
 	
