@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-import algorithms.mazeGenerators.Maze2d;
+import algorithms.mazeGenerators.Maze3d;
 
 public class MyView extends Observable implements View, Observer {
 	
@@ -29,7 +29,7 @@ public class MyView extends Observable implements View, Observer {
 	}
 
 	@Override
-	public void displayMaze(Maze2d maze) {
+	public void displayMaze(Maze3d maze) {
 		out.println(maze);
 		out.flush();
 	}

@@ -1,9 +1,9 @@
 package model;
 
-import algorithms.mazeGenerators.Maze2d;
+import algorithms.mazeGenerators.Maze3d;
 
 public interface Model {
 	void generateMaze(String name, int rows, int cols);
-	Maze2d getMaze(String name);
+	Maze3d getMaze(String name);
 	void exit();	
 }

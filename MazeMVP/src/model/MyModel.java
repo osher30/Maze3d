@@ -17,16 +17,17 @@ import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import algorithms.mazeGenerators.GrowingTreeGenerator;
-import algorithms.mazeGenerators.Maze2d;
+import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
-import algorithms.search.Solution;
+import algorithms.mazeGenerators.cellRandomSelector;
+import algorithms.serach.Solution;
 import properties.Properties;
 import properties.PropertiesLoader;
 
 public class MyModel extends Observable implements Model {
 	
 	private ExecutorService executor;
-	private Map<String, Maze2d> mazes = new ConcurrentHashMap<String, Maze2d>();
+	private Map<String, Maze3d> mazes = new ConcurrentHashMap<String, Maze3d>();
 	private Map<String, Solution<Position>> solutions = new ConcurrentHashMap<String, Solution<Position>>();
 	private Properties properties;
 		
@@ -38,12 +39,12 @@ public class MyModel extends Observable implements Model {
 				
 	@Override
 	public void generateMaze(String name, int rows, int cols) {
-		executor.submit(new Callable<Maze2d>() {
+		executor.submit(new Callable<Maze3d>() {
 
 			@Override
-			public Maze2d call() throws Exception {
-				GrowingTreeGenerator generator = new GrowingTreeGenerator();
-				Maze2d maze = generator.generate(rows, cols);
+			public Maze3d call() throws Exception {
+				GrowingTreeGenerator generator = new GrowingTreeGenerator(new cellRandomSelector());
+				Maze3d maze = generator.generate(floor,rows, cols);
 				mazes.put(name, maze);
 				
 				setChanged();
