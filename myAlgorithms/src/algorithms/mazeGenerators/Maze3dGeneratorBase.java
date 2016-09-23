@@ -22,6 +22,4 @@ public abstract class Maze3dGeneratorBase implements Maze3dGenerator
 		long endTime = System.currentTimeMillis();
 		return String.valueOf(endTime - startTime);
 	}
-
 }
-
