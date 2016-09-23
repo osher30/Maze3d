@@ -4,14 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class GrowingTreeGenerator extends Maze3dGeneratorBase {
-	
+public class GrowingTreeGenerator extends Maze3dGeneratorBase 
+{	
 	public final static int WALL = 1;
 	private cellSelector selector;
-	public GrowingTreeGenerator(cellSelector s) {
-		this.selector = s;
 	
+	public GrowingTreeGenerator(cellSelector s) 
+	{
+		this.selector = s;
 	}
+	
 	@Override
 	public Maze3d generate(int floor, int row, int cols) {
 		Maze3d maze = new Maze3d(floor,row,cols);

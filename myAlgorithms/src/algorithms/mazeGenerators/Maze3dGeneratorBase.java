@@ -1,19 +1,22 @@
 package algorithms.mazeGenerators;
 
-public abstract class Maze3dGeneratorBase implements Maze3dGenerator {
-	
+public abstract class Maze3dGeneratorBase implements Maze3dGenerator 
+{
 	private boolean isdone = false;
 	
-	public boolean isIsdone() {
+	public boolean isIsdone() 
+	{
 		return isdone;
 	}
 
-	public void setIsdone(boolean isdone) {
+	public void setIsdone(boolean isdone) 
+	{
 		this.isdone = isdone;
 	}
 
 	@Override
-	public String measureAlgotithmtTime(int floor, int row, int cols) {
+	public String measureAlgotithmtTime(int floor, int row, int cols) 
+	{
 		long startTime = System.currentTimeMillis();
 		this.generate(floor, row , cols);
 		long endTime = System.currentTimeMillis();

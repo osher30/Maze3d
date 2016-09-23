@@ -11,8 +11,8 @@ import algorithms.serach.Solution;
 
 public class Demo {
 	
-	public void Run(){
-	
+	public void Run()
+	{
 		Maze3dGenerator generator = new GrowingTreeGenerator(new cellLastSelector());
 		Maze3d maze = generator.generate(8, 8, 8);
 		System.out.println(maze);
@@ -28,6 +28,4 @@ public class Demo {
 		System.out.println("Number of nodes in Bfs : " + bfs.getNumberOfNodesEvaluated());
 		System.out.println("Number of nodes in Dfs : " + dfs.getNumberOfNodesEvaluated());
 	}
-	
-
 }
