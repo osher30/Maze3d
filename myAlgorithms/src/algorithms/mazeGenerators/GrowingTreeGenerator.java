@@ -68,18 +68,24 @@ public class GrowingTreeGenerator extends Maze3dGeneratorBase
 		private Random rand = new Random();
 		private Position getRandomPosition(Maze3d maze)
 		{
-			int z = rand.nextInt(maze.getFloor()-2) + 1;
+			int z,y,x;
+			if(maze.getFloor() == 3){
+				z = 1;
+			}
+			else {
+			z = rand.nextInt(maze.getFloor()-2) + 1;
 			//while(z % 2 == 0){
 			while(z == 0 || z == maze.getFloor()-2)
 			{
 				z = rand.nextInt(maze.getFloor()-2) + 1;
 			}
-			int y = rand.nextInt(maze.getRow()-2)+1;
+			}
+			y = rand.nextInt(maze.getRow()-2)+1;
 			while(y % 2 == 0)
 			{
 				y = rand.nextInt(maze.getRow()-2)+1;
 			}
-			int x = rand.nextInt(maze.getCols()-2)+1;
+			x = rand.nextInt(maze.getCols()-2)+1;
 			while(x % 2 == 0){
 				x = rand.nextInt(maze.getCols()-2)+1;
 			}
@@ -178,11 +184,11 @@ public class GrowingTreeGenerator extends Maze3dGeneratorBase
 			}
 			return pos;
 		}
-		
+		/*
 		@Override
 		public void setDone(boolean isdone) 
 		{
 			// TODO Auto-generated method stub
 			
-		}
+		}*/
 	}

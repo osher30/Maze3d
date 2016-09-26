@@ -24,12 +24,12 @@ public class SimpleMaze3dGenerator extends Maze3dGeneratorBase {
 		maz[1][0][temp.getCols()-2] = 1;
 		return temp;
 	}
-
+/*
 	@Override
 	public void setDone(boolean isdone) {
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 
 }

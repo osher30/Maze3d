@@ -5,9 +5,9 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.cellLastSelector;
-import algorithms.serach.BFS;
-import algorithms.serach.DFS;
-import algorithms.serach.Solution;
+import algorithms.search.BFS;
+import algorithms.search.DFS;
+import algorithms.search.Solution;
 
 public class Demo {
 	

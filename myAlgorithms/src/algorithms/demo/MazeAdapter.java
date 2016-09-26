@@ -1,13 +1,12 @@
 package algorithms.demo;
 
-import algorithms.serach.Searchable;
-import algorithms.serach.State;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.search.Searchable;
+import algorithms.search.State;
 /**
  * Adapter from maze to states of problems.
  *

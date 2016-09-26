@@ -1,4 +1,4 @@
-package algorithms.serach;
+package algorithms.search;
 
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +15,9 @@ public class BFS<T> extends CommonSearcher<T> {
 	 */
 	@Override
 	public Solution<T> search(Searchable<T> s) {
+		if(s == null)
+			return null;
+		
 		State<T> startState = s.getStartState();
 		openList.add(startState);
 			

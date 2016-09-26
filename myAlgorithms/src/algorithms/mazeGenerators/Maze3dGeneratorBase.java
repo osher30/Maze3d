@@ -2,7 +2,7 @@ package algorithms.mazeGenerators;
 
 public abstract class Maze3dGeneratorBase implements Maze3dGenerator 
 {
-	private boolean isdone = false;
+	/*private boolean isdone = false;
 	
 	public boolean isIsdone() 
 	{
@@ -13,7 +13,7 @@ public abstract class Maze3dGeneratorBase implements Maze3dGenerator
 	{
 		this.isdone = isdone;
 	}
-
+*/
 	@Override
 	public String measureAlgotithmtTime(int floor, int row, int cols) 
 	{

@@ -1,4 +1,4 @@
-package algorithms.serach;
+package algorithms.search;
 
 public class State<T> implements Comparable<State<T>> {
 	private State<T> cameFrom;

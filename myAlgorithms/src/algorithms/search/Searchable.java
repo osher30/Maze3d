@@ -1,4 +1,4 @@
-	package algorithms.serach;
+package algorithms.search;
 
 import java.util.List;
 /**
