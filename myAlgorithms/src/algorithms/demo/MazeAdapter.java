@@ -5,8 +5,8 @@ import java.util.List;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
-import algorithms.search.Searchable;
-import algorithms.search.State;
+import algorithms.serach.Searchable;
+import algorithms.serach.State;
 /**
  * Adapter from maze to states of problems.
  *

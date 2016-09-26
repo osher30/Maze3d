@@ -1,4 +1,4 @@
-package algorithms.search;
+package algorithms.serach;
 
 import static org.junit.Assert.*;
 

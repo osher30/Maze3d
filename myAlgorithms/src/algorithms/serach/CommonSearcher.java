@@ -1,4 +1,4 @@
-	package algorithms.search;
+	package algorithms.serach;
 
 import java.util.List;
 import java.util.PriorityQueue;
