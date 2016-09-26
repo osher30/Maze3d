@@ -33,6 +33,12 @@ public class MazeWindow extends BasicWindow implements View {
 		Button btnDisplayMaze = new Button(btnGroup, SWT.PUSH);
 		btnDisplayMaze.setText("Display maze");	
 		
+		Button btnSolveMaze = new Button(btnGroup, SWT.PUSH);
+		btnSolveMaze.setText("Solve maze");
+		
+		Button btnExit = new Button(btnGroup, SWT.PUSH);
+		btnExit.setText("Exit");
+		
 		btnDisplayMaze.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -62,11 +68,9 @@ public class MazeWindow extends BasicWindow implements View {
 			}
 		});
 		
-		Button btnSolveMaze = new Button(btnGroup, SWT.PUSH);
-		btnSolveMaze.setText("Solve maze");
-		
 	}
 
+	
 	protected void showGenerateMazeOptions() {
 		Shell shell = new Shell();
 		shell.setText("Generate Maze");
