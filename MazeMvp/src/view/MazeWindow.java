@@ -30,6 +30,24 @@ public class MazeWindow extends BasicWindow implements View {
 		Button btnGenerateMaze = new Button(btnGroup, SWT.PUSH);
 		btnGenerateMaze.setText("Generate maze");	
 		
+		Button btnDisplayMaze = new Button(btnGroup, SWT.PUSH);
+		btnDisplayMaze.setText("Display maze");	
+		
+		btnDisplayMaze.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+			}
+		});
+		
+		
 		btnGenerateMaze.addSelectionListener(new SelectionListener() {
 			
 			@Override
@@ -40,8 +58,7 @@ public class MazeWindow extends BasicWindow implements View {
 			
 			@Override
 			public void widgetDefaultSelected(SelectionEvent arg0) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub	
 			}
 		});
 		
@@ -58,6 +75,14 @@ public class MazeWindow extends BasicWindow implements View {
 		GridLayout layout = new GridLayout(2, false);
 		shell.setLayout(layout);
 		
+		Label lblName = new Label(shell, SWT.NONE);
+		lblName.setText("Name: ");
+		Text txtName = new Text(shell, SWT.BORDER);
+		
+		Label lblFloors = new Label(shell, SWT.NONE);
+		lblFloors.setText("Floors: ");
+		Text txtFloors = new Text(shell, SWT.BORDER);
+		
 		Label lblRows = new Label(shell, SWT.NONE);
 		lblRows.setText("Rows: ");
 		Text txtRows = new Text(shell, SWT.BORDER);
@@ -73,7 +98,8 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("generate_maze aaa " + txtRows.getText() + " " + txtCols.getText());
+				notifyObservers("generate_maze " +txtName.getText() + " " + txtFloors.getText()+ 
+						" " + txtRows.getText() + " " + txtCols.getText());
 				shell.close();
 			}
 			
