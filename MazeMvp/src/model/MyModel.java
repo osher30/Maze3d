@@ -20,7 +20,7 @@ import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.cellRandomSelector;
-import algorithms.search.Solution;
+import algorithms.serach.Solution;
 import properties.Properties;
 import properties.PropertiesLoader;
 
