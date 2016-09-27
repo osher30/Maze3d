@@ -119,7 +119,6 @@ public class CommandsManager {
 			String name = args[0];
 			String algo = args[1]; 
 			model.solveMaze(name, algo);
-			
 		}
 	}
 	

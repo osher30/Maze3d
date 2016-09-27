@@ -15,5 +15,11 @@ public interface View {
 	//void notifySolutionIsReady(String name);
 	//void displayMazeSolution(Solution<Position> solution);
 	//void printErrorMessage(String[] msg);
+	
+	
+	//int askForXYZ();
+	//void displayCrossSection(Maze3d maze, int index); 
+	//void displaySolution(String name);
+	//void getDirList(String path);
 	void start();	
 }
