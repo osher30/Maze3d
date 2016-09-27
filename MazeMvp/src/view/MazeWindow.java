@@ -248,7 +248,7 @@ public class MazeWindow extends BasicWindow implements View {
 			return;
 		}
 		
-		Position pos = maze.getStartPosition();
+		Position pos = maze.getStartPosition()
 		int [][] mazeData = maze.getCrossSectionByZ(1);
 		mazeDisplay.forceFocus();
 		mazeDisplay.setMazeData(mazeData);
