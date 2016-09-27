@@ -103,7 +103,7 @@ public class CommandsManager {
 			String name = args[0];
 			Maze3d maze = model.getMaze(name);
 			String fileName = args[1];
-			//model.saveMaze(maze, fileName);
+			model.saveMaze(maze, fileName);
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class CommandsManager {
 		{
 			String name = args[0];
 			String fileName = args[1];
-			//model.loadMaze(name, fileName);
+			model.loadMaze(name, fileName);
 		}
 	}
 	
@@ -127,7 +127,7 @@ public class CommandsManager {
 		{
 			String name = args[0];
 			String algo = args[1]; 
-			//model.solveMaze(name, algo);
+			model.solveMaze(name, algo);
 		}
 	}
 	

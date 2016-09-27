@@ -8,6 +8,7 @@ public interface View {
 	void notifyMazeIsReady(String name);
 	void displayMaze(Maze3d maze);
 	void displayMessage(String msg);
+	
 	//Checkkkkkkkkkkkkkkkkkkkkk
 	//void printAnswers(String[] filelist);
 	//void notifySolutionIsReady(String name);

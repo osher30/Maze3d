@@ -1,5 +1,6 @@
 package view;
 
+import java.awt.Button;
 import java.util.Observable;
 
 import org.eclipse.swt.SWT;
@@ -42,13 +43,15 @@ public abstract class BasicWindow extends Observable implements Runnable {
 	//Checkkkkkkkkkkkkkk
 	protected void exitEvent(Event event) 
 	{
-		int style = SWT.APPLICATION_MODAL | SWT.YES | SWT.NO;
+		int style = SWT.APPLICATION_MODAL |  SWT.YES | SWT.NO;
 		MessageBox messageBox = new MessageBox(shell, style);
 		messageBox.setText("Exit");
 		messageBox.setMessage("Are you sure you want to exit the Game?");
-		if (messageBox.open() == SWT.YES) {
-			setChanged();
+		int response = messageBox.open();
+		if (response == SWT.YES) {
+			setChanged();	
 			notifyObservers("exit");
+			shell.close();
 		}
 		else if (event!=null) {
 			 

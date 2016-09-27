@@ -53,5 +53,43 @@ public class MyView extends Observable implements View, Observer {
 			notifyObservers(arg);
 		}
 	}
+	
+	public void displayCrossSection (Maze3d maze, int index)
+	{
+		//int answer = askForXYZ();
+		int[][] maze2d;
+		switch (index) {
+		case 1:
+			maze2d = maze.getCrossSectionByX(index);
+			for(int z = 0;z < maze.getFloor();z++)
+			{
+				for(int y = 0;y < maze.getRow();y++)
+					System.out.print(maze2d[z][y]);
+				System.out.print("\n");
+			}
+			break;
+		case 2:
+			maze2d = maze.getCrossSectionByY(index);
+			for(int z = 0;z < maze.getFloor();z++){
+				for(int x = 0;x < maze.getCols();x++)
+					System.out.print(maze2d[z][x]);
+				System.out.print("\n");
+			}
+			break;
+		case 3:
+			maze2d = maze.getCrossSectionByZ(index);
+			for(int y = 0;y < maze.getRow();y++){
+				for(int x = 0;x < maze.getCols();x++)
+					System.out.print(maze2d[y][x]);
+				System.out.print("\n");
+			}
+			break;
+
+		default:
+			System.out.println("Invaild index");
+			break;
+		}
+	}
+
 
 }

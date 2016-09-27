@@ -33,7 +33,7 @@ public class Presenter implements Observer {
 		}
 		else {
 			String[] args = null;
-			if (arr.length > 1) {
+			if (arr.length >= 1) {
 				String commandArgs = commandLine.substring(
 						commandLine.indexOf(" ") + 1);
 				args = commandArgs.split(" ");							
