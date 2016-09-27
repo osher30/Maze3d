@@ -2,7 +2,10 @@ package view;
 
 import java.util.Observable;
 
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 
 public abstract class BasicWindow extends Observable implements Runnable {
@@ -36,4 +39,21 @@ public abstract class BasicWindow extends Observable implements Runnable {
 		display.dispose(); // dispose OS components
 	}
 
+	//Checkkkkkkkkkkkkkk
+	protected void exitEvent(Event event) 
+	{
+		int style = SWT.APPLICATION_MODAL | SWT.YES | SWT.NO;
+		MessageBox messageBox = new MessageBox(shell, style);
+		messageBox.setText("Exit");
+		messageBox.setMessage("Are you sure you want to exit the Game?");
+		if (messageBox.open() == SWT.YES) {
+			setChanged();
+			notifyObservers("exit");
+		}
+		else if (event!=null) {
+			 
+			event.doit = false;
+		}
+		
+	}
 }
