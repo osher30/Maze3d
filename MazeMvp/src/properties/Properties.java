@@ -9,6 +9,7 @@ public class Properties implements Serializable {
 	private int numOfThreads;
 	private String generateMazeAlgorithm;
 	private String solveMazeAlgorithm;
+	private String exitMazeAlgorithm; 
 	
 	public Properties() {
 		
@@ -32,6 +33,14 @@ public class Properties implements Serializable {
 	}
 	public void setSolveMazeAlgorithm(String solveMazeAlgorithm) {
 		this.solveMazeAlgorithm = solveMazeAlgorithm;
+	}
+
+	public String getExitMazeAlgorithm() {
+		return exitMazeAlgorithm;
+	}
+
+	public void setExitMazeAlgorithm(String exitMazeAlgorithm) {
+		this.exitMazeAlgorithm = exitMazeAlgorithm;
 	}
 	
 	
