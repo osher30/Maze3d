@@ -15,6 +15,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
 
 public class MazeWindow extends BasicWindow implements View {
 
@@ -173,7 +174,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("generate_maze" +txtName.getText() + " " + txtFloors.getText()+ 
+				notifyObservers("generate_maze" + " " + txtName.getText() + " " + txtFloors.getText()+ 
 						" " + txtRows.getText() + " " + txtCols.getText());
 				shell.close();
 			}
@@ -209,7 +210,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
-				notifyObservers("display_maze " + txtName.getText());
+				notifyObservers("display" + " " + txtName.getText());
 				shell.close();
 			}
 
@@ -243,25 +244,14 @@ public class MazeWindow extends BasicWindow implements View {
 	@Override
 	public void displayMaze(Maze3d maze) {
 		if (maze == null) {
-
 	//		this.printErrorMessage(new String[] { "Maze not found", "can't find the maze" });
 			return;
 		}
-	//	mazeDisplay.setMazeData(maze);
+		
+		Position pos = maze.getStartPosition();
+		int [][] mazeData = maze.getCrossSectionByZ(1);
 		mazeDisplay.forceFocus();
-		/*int[][] mazeData={
-				{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-				{1,0,0,0,0,0,0,0,1,1,0,1,0,0,1},
-				{0,0,1,1,1,1,1,0,0,1,0,1,0,1,1},
-				{1,1,1,0,0,0,1,0,1,1,0,1,0,0,1},
-				{1,0,1,0,1,1,1,0,0,0,0,1,1,0,1},
-				{1,1,0,0,0,1,0,0,1,1,1,1,0,0,1},
-				{1,0,0,1,0,0,1,0,0,0,0,1,0,1,1},
-				{1,0,1,1,0,1,1,0,1,1,0,0,0,1,1},
-				{1,0,0,0,0,0,0,0,0,1,0,1,0,0,1},
-				{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1},
-			};
-		mazeDisplay.setMazeData(mazeData);*/
+		mazeDisplay.setMazeData(mazeData);
 	}
 
 	@Override

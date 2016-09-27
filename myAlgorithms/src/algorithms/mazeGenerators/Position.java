@@ -11,6 +11,18 @@ public class Position {
 		this.x = x;
 	}
 	
+	public int getZ() {
+		return z;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+	public int getX() {
+		return x;
+	}
+	
 	public boolean equals(Object obj){
 		Position pos = (Position) obj;
 		return (this.x == pos.x && this.y == pos.y && this.z == pos.z);
