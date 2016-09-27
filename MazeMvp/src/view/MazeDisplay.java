@@ -6,9 +6,14 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Shell;
 
+import algorithms.mazeGenerators.Maze3d;
+
 public class MazeDisplay extends Canvas {
 	
 	private int[][] mazeData;
+	private Maze3d maze3d; 
+	protected boolean isWin = false; 
+	private Character character;
 	
 	public void setMazeData(int[][] mazeData) {
 		this.mazeData = mazeData;
