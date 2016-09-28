@@ -9,6 +9,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -45,7 +46,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				showGenerateMazeOptions();
-				
+				//generateEvent(null);
 			}
 			
 			@Override
@@ -317,6 +318,7 @@ public class MazeWindow extends BasicWindow implements View {
 				setChanged();
 				notifyObservers("generate_maze" + " " + txtName.getText() + " " + txtFloors.getText()+ 
 						" " + txtRows.getText() + " " + txtCols.getText());
+				generateEvent(null);
 				shell.close();
 			}
 			
@@ -370,9 +372,6 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void run() {
 				MessageBox msg = new MessageBox(shell);
-				msg.setMessage("Maze " + name + " is ready");
-				msg.open();	
-				
 				setChanged();
 				notifyObservers("display_maze " + name);
 				//mazeName = name;
@@ -403,14 +402,33 @@ public class MazeWindow extends BasicWindow implements View {
 		run();		
 	}
 
+	protected void exitEvent(Event event) 
+	{
+		int style = SWT.APPLICATION_MODAL |  SWT.YES | SWT.NO;
+		MessageBox messageBox = new MessageBox(shell, style);
+		messageBox.setText("Exit");
+		messageBox.setMessage("Are you sure you want to exit the Game?");
+		int response = messageBox.open();
+		if (response == SWT.YES) {
+			setChanged();	
+			notifyObservers("exit");
+			shell.close();
+		}
+		else if (event!=null) {
+			 
+			event.doit = false;
+		}
+		
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	protected void generateEvent(Event event) 
+	{
+		int style = SWT.APPLICATION_MODAL |  SWT.OK;
+		MessageBox messageBox = new MessageBox(shell, style);
+		messageBox.setText("Generate Maze");
+		messageBox.setMessage("Maze Is Ready! ");
+		messageBox.open();		
+	}
 	
 	// Checkkkkkkkkkkkkkkkk
 /*	@Override
