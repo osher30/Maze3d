@@ -131,11 +131,6 @@ public class MazeWindow extends BasicWindow implements View {
 			}
 		});
 		
-
-		Button btnProprites = new Button(btnGroup, SWT.PUSH);
-		btnProprites.setText("Proprites");
-		btnProprites.setBackground(new Color(null,102,178,255));
-		
 		Button btnHint = new Button(btnGroup, SWT.PUSH);
 		btnHint.setText("Show Hint");
 		btnHint.setBackground(new Color(null,102,178,255));
@@ -177,21 +172,7 @@ public class MazeWindow extends BasicWindow implements View {
 
 			}
 		});
-		/*
-		Menu menuBar = new Menu(shell, SWT.BAR);
-		MenuItem casCodeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
-		casCodeFileMenu.setText("&File");
-		MenuItem casCodeMazeMenu = new MenuItem(menuBar, SWT.CASCADE);
-		casCodeMazeMenu.setText("Maze");
 		
-		Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
-		casCodeFileMenu.setMenu(fileMenu);
-		MenuItem openProprites = new MenuItem(fileMenu, SWT.PUSH);
-		openProprites.setText("Open Properties");
-		MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
-		exitItem.setText("exit");
-		
-		*/
 		mazeDisplay = new MazeDisplay(this.shell, SWT.DOUBLE_BUFFERED);
 		mazeDisplay.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
@@ -210,8 +191,7 @@ public class MazeWindow extends BasicWindow implements View {
         shell.setMenuBar(menuBar);
         
         exitItem.addListener(SWT.Selection, event-> {
-            shell.getDisplay().dispose();
-            System.exit(0);
+        	exitEvent(null);
         });
 
         //shell.setText("Simple menu");
@@ -346,8 +326,7 @@ public class MazeWindow extends BasicWindow implements View {
 				
 			}
 		});
-		
-		//mazeDisplay = new MazeDisplay(shell, SWT.NONE);			
+					
 		shell.open();		
 	}
 
@@ -417,7 +396,6 @@ public class MazeWindow extends BasicWindow implements View {
 	@Override
 	public void displayMessage(String msg) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	@Override
