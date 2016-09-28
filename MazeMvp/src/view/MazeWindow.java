@@ -177,6 +177,7 @@ public class MazeWindow extends BasicWindow implements View {
 
 			}
 		});
+		/*
 		Menu menuBar = new Menu(shell, SWT.BAR);
 		MenuItem casCodeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
 		casCodeFileMenu.setText("&File");
@@ -186,13 +187,42 @@ public class MazeWindow extends BasicWindow implements View {
 		Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
 		casCodeFileMenu.setMenu(fileMenu);
 		MenuItem openProprites = new MenuItem(fileMenu, SWT.PUSH);
-		openProprites.setText("Open Proprites");
+		openProprites.setText("Open Properties");
 		MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
 		exitItem.setText("exit");
 		
-		
+		*/
 		mazeDisplay = new MazeDisplay(this.shell, SWT.DOUBLE_BUFFERED);
 		mazeDisplay.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+        Menu menuBar = new Menu(shell, SWT.BAR);
+        MenuItem cascadeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
+        cascadeFileMenu.setText("&File");
+        
+        Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
+        cascadeFileMenu.setMenu(fileMenu);
+
+        MenuItem openProprites = new MenuItem(fileMenu, SWT.PUSH);
+		openProprites.setText("Open Properties");
+		
+        MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
+        exitItem.setText("&Exit");
+        shell.setMenuBar(menuBar);
+        
+        exitItem.addListener(SWT.Selection, event-> {
+            shell.getDisplay().dispose();
+            System.exit(0);
+        });
+
+        //shell.setText("Simple menu");
+        //shell.setSize(300, 200);
+        //shell.open();
+
+       /* while (!shell.isDisposed()) {
+          if (!display.readAndDispatch()) {
+            display.sleep();
+          }
+        }*/
 
 	}
 
