@@ -10,6 +10,7 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -187,6 +188,26 @@ public class MazeWindow extends BasicWindow implements View {
         MenuItem openProprites = new MenuItem(fileMenu, SWT.PUSH);
 		openProprites.setText("Open Properties");
 		
+		openProprites.addSelectionListener(new SelectionListener() {
+			
+			@Override
+			public void widgetSelected(SelectionEvent arg0) {
+				FileDialog fd = new FileDialog(shell, SWT.OPEN);
+				fd.setText("Open Proprites");
+				String[] fileTypes = {"*.xml"};
+				fd.setFilterExtensions(fileTypes);
+				String selectedFile = fd.open();
+				String[] args = {selectedFile};
+				setChanged();
+				notifyObservers("open_properties_file" + args);
+				
+			}
+			@Override
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
         MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
         exitItem.setText("&Exit");
         shell.setMenuBar(menuBar);
