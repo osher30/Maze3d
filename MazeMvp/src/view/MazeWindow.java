@@ -318,7 +318,7 @@ public class MazeWindow extends BasicWindow implements View {
 				setChanged();
 				notifyObservers("generate_maze" + " " + txtName.getText() + " " + txtFloors.getText()+ 
 						" " + txtRows.getText() + " " + txtCols.getText());
-				generateEvent(null);
+				generateEvent(txtName.getText());
 				shell.close();
 			}
 			
@@ -421,12 +421,12 @@ public class MazeWindow extends BasicWindow implements View {
 		
 	}
 	
-	protected void generateEvent(Event event) 
+	protected void generateEvent(String name) 
 	{
 		int style = SWT.APPLICATION_MODAL |  SWT.OK;
 		MessageBox messageBox = new MessageBox(shell, style);
 		messageBox.setText("Generate Maze");
-		messageBox.setMessage("Maze Is Ready! ");
+		messageBox.setMessage("Maze " + name + " Is Ready!");
 		messageBox.open();		
 	}
 	
