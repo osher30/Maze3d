@@ -10,6 +10,8 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.MenuItem;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
@@ -175,6 +177,18 @@ public class MazeWindow extends BasicWindow implements View {
 
 			}
 		});
+		Menu menuBar = new Menu(shell, SWT.BAR);
+		MenuItem casCodeFileMenu = new MenuItem(menuBar, SWT.CASCADE);
+		casCodeFileMenu.setText("&File");
+		MenuItem casCodeMazeMenu = new MenuItem(menuBar, SWT.CASCADE);
+		casCodeMazeMenu.setText("Maze");
+		
+		Menu fileMenu = new Menu(shell, SWT.DROP_DOWN);
+		casCodeFileMenu.setMenu(fileMenu);
+		MenuItem openProprites = new MenuItem(fileMenu, SWT.PUSH);
+		openProprites.setText("Open Proprites");
+		MenuItem exitItem = new MenuItem(fileMenu, SWT.PUSH);
+		exitItem.setText("exit");
 		
 		
 		mazeDisplay = new MazeDisplay(this.shell, SWT.DOUBLE_BUFFERED);
@@ -381,6 +395,15 @@ public class MazeWindow extends BasicWindow implements View {
 		run();		
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// Checkkkkkkkkkkkkkkkk
 /*	@Override
 	public void printAnswers(String[] msg) {
