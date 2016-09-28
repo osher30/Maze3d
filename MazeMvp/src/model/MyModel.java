@@ -61,9 +61,8 @@ public class MyModel extends Observable implements Model {
 				mazes.put(name, maze);
 				
 				setChanged();
-				//notifyObservers("display" + name);
+				
 				notifyObservers("maze_ready" + " " +  name);
-				//notifyObservers("maze_ready " + name);		
 				return maze;
 			}
 			

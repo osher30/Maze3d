@@ -74,8 +74,7 @@ public class CommandsManager {
 		@Override
 		public void doCommand(String[] args) {
 			String name = args[0];
-			String msg = "maze " + name + " is ready";
-		view.displayMessage(msg);
+			view.notifyMazeIsReady(name);
 		}
 		
 	}

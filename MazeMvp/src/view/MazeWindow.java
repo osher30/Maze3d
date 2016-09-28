@@ -339,7 +339,7 @@ public class MazeWindow extends BasicWindow implements View {
 				setChanged();
 				notifyObservers("generate_maze" + " " + txtName.getText() + " " + txtFloors.getText()+ 
 						" " + txtRows.getText() + " " + txtCols.getText());
-				generateEvent(txtName.getText());
+				//generateEvent(txtName.getText());
 				shell.close();
 			}
 			
@@ -394,8 +394,9 @@ public class MazeWindow extends BasicWindow implements View {
 			public void run() {
 				MessageBox msg = new MessageBox(shell);
 				setChanged();
-				notifyObservers("display_maze " + name);
-				//mazeName = name;
+				msg.setText("Generate Maze");
+				msg.setMessage("Maze " + name + " Is Ready!");
+				msg.open();	
 			}
 		});			
 	}
@@ -416,6 +417,11 @@ public class MazeWindow extends BasicWindow implements View {
 	@Override
 	public void displayMessage(String msg) {
 		// TODO Auto-generated method stub
+		/*int style = SWT.APPLICATION_MODAL |  SWT.OK;
+		MessageBox messageBox = new MessageBox(super.shell, style);
+		messageBox.setText("Generate Maze");
+		messageBox.setMessage(msg);
+		messageBox.open();*/		
 	}
 	
 	@Override
@@ -441,15 +447,35 @@ public class MazeWindow extends BasicWindow implements View {
 		}
 		
 	}
+
 	
-	protected void generateEvent(String name) 
-	{
-		int style = SWT.APPLICATION_MODAL |  SWT.OK;
-		MessageBox messageBox = new MessageBox(shell, style);
-		messageBox.setText("Generate Maze");
-		messageBox.setMessage("Maze " + name + " Is Ready!");
-		messageBox.open();		
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// Checkkkkkkkkkkkkkkkk
 /*	@Override
