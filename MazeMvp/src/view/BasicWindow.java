@@ -38,25 +38,5 @@ public abstract class BasicWindow extends Observable implements Runnable {
 		} // shell is disposed
 
 		display.dispose(); // dispose OS components
-	}
-
-	//Checkkkkkkkkkkkkkk
-	protected void exitEvent(Event event) 
-	{
-		int style = SWT.APPLICATION_MODAL |  SWT.YES | SWT.NO;
-		MessageBox messageBox = new MessageBox(shell, style);
-		messageBox.setText("Exit");
-		messageBox.setMessage("Are you sure you want to exit the Game?");
-		int response = messageBox.open();
-		if (response == SWT.YES) {
-			setChanged();	
-			notifyObservers("exit");
-			shell.close();
-		}
-		else if (event!=null) {
-			 
-			event.doit = false;
-		}
-		
-	}
+	}	
 }
