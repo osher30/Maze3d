@@ -403,18 +403,6 @@ public class MazeWindow extends BasicWindow implements View {
 
 	@Override
 	public void displayMaze(Maze3d maze) {
-		if (maze == null) {
-			MessageBox messageBox = new MessageBox(shell);
-			setChanged();
-			messageBox.setText("message");
-			messageBox.setMessage("Maze does not exist");
-			messageBox.open();		
-		
-			
-			//this.printErrorMessage(new String[] { "Maze not found", "can't find the maze" });
-			return;
-		}
-		
 		int index = maze.getStartPosition().getZ();
 		int [][] mazeData = maze.getCrossSectionByZ(index);
 		mazeDisplay.forceFocus();
@@ -423,7 +411,11 @@ public class MazeWindow extends BasicWindow implements View {
 
 	@Override
 	public void displayMessage(String msg) {
-		// TODO Auto-generated method stub
+		MessageBox messageBox = new MessageBox(shell);
+		setChanged();
+		messageBox.setText("message");
+		messageBox.setMessage(msg);
+		messageBox.open();
 	}
 	
 	@Override

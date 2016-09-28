@@ -57,6 +57,11 @@ public class CommandsManager {
 		public void doCommand(String[] args) {
 			String name = args[0];
 			Maze3d maze = model.getMaze(name);
+			if(maze == null){
+				String msg = "Maze does not exist";
+				view.displayMessage(msg);
+			}
+			else
 			view.displayMaze(maze);
 		}		
 	}
