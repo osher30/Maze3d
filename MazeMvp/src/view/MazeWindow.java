@@ -19,6 +19,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
+import properties.Properties;
+import properties.PropertiesLoader;
 
 public class MazeWindow extends BasicWindow implements View {
 
@@ -26,6 +28,7 @@ public class MazeWindow extends BasicWindow implements View {
 //	private Character character;
 	private String mazeName;
 	//private String cmd = "";
+	private Properties prop;
 	
 	@Override
 	protected void initWidgets() {
@@ -85,7 +88,7 @@ public class MazeWindow extends BasicWindow implements View {
 				if (mazeName != null) {
 				//	cmd = "display_solution";
 					setChanged();
-					notifyObservers("solve " + mazeName);
+					notifyObservers("solve" + " " + mazeName + " " + "none");
 				}
 			}
 			
@@ -361,6 +364,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				setChanged();
+				mazeName = txtName.getText();
 				notifyObservers("display" + " " + txtName.getText());
 				shell.close();
 			}

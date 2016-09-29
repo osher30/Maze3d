@@ -25,7 +25,10 @@ import java.util.zip.GZIPOutputStream;
 import algorithms.demo.MazeAdapter;
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Maze3dGenerator;
+import algorithms.mazeGenerators.Maze3dGeneratorBase;
 import algorithms.mazeGenerators.Position;
+import algorithms.mazeGenerators.SimpleMaze3dGenerator;
 import algorithms.mazeGenerators.cellRandomSelector;
 import algorithms.serach.BFS;
 import algorithms.serach.DFS;
@@ -57,14 +60,20 @@ public class MyModel extends Observable implements Model {
 
 			@Override
 			public Maze3d call() throws Exception {
-				GrowingTreeGenerator generator = new GrowingTreeGenerator(new cellRandomSelector());
+				Maze3dGeneratorBase generator = null;
+				String algo = properties.getGenerateMazeAlgorithm();
+				if(algo.equals("GrowingTree")){
+					generator = new GrowingTreeGenerator(new cellRandomSelector());
+				}
+				else  if(algo.equals("Simple")){
+					generator = new SimpleMaze3dGenerator();
+				}
 				Maze3d maze = generator.generate(floor, rows, cols);
 				mazes.put(name, maze);
 				setChanged();
 				notifyObservers("maze_ready" + " " +  name);
 				return maze;
 			}
-			
 		});
 			
 	}
@@ -192,10 +201,11 @@ public class MyModel extends Observable implements Model {
 			@Override
 			public void run() 
 			{
+				String algo = properties.getSolveMazeAlgorithm();
 				Searcher<Position> searchAlgo = null;
-				if (algorithm.equals("BFS")) {
+				if (algorithm.equals("BFS") || algo.equals("BFS")) {
 					searchAlgo = new BFS<Position>();
-				} else if(algorithm.equals("DFS")) {
+				} else if(algorithm.equals("DFS") || algo.equals("DFS")) {
 					searchAlgo = new DFS<Position>();
 				} else {
 					notifyObservers("Invalid algorithm, try with Capital laters.");
