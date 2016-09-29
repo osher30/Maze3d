@@ -217,24 +217,34 @@ public class MyModel extends Observable implements Model {
 				} else if(algorithm.equals("DFS")) {
 					searchAlgo = new DFS<Position>();
 				} else {
-					notifyObservers("Invalid algorithm, try with Capital laters.");
+					notifyObservers("Invalid algorithm,try with Capital laters.");
 					return;
 				}
 					}
 				
 				Maze3d maze = mazes.get(name);
 				if (maze == null) {
-					notifyObservers(String.format("Maze %s is not exist", name));
+					notifyObservers("Maze" + name + " is not exist");
 					return;
 				}
 				Solution<Position> solution = searchAlgo.search(new MazeAdapter(maze));
 				mazesSolutions.put(name, solution);
-				//getMazesSolutions().put(name, solution);
-				notifyObservers(String.format("Solution for %s is ready.", name));
+				setChanged();
+				notifyObservers("display_message" + " " +"Solution_is_ready");
 			}	
 	 	});
 		thread.start();
 		threads.add(thread);		
 	}
 
+	@Override
+	public List<Position> getSolution(String name) {
+		List<Position> sol=null;
+		sol = (List<Position>) mazesSolutions.get(name);
+		return sol;
+		
+		
+	}
+
+	
 }

@@ -3,10 +3,13 @@ package view;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
+import algorithms.serach.Solution;
 
 public class MyView extends Observable implements View, Observer {
 	
@@ -91,5 +94,13 @@ public class MyView extends Observable implements View, Observer {
 		}
 	}
 
-
+	@Override
+	public void displayMazeSolution(List<Position> solution) {
+		if (solution == null) {
+			notifyObservers(String.format("Solution is not exist"));
+		} else {
+			notifyObservers(solution.toString());
+		}
+		
+	}
 }

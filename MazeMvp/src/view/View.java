@@ -1,8 +1,9 @@
 package view;
 
+import java.util.List;
+
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
-import algorithms.serach.Solution;
 
 public interface View {
 	void notifyMazeIsReady(String name);
@@ -11,7 +12,7 @@ public interface View {
 	
 	//void printAnswers(String[] filelist);
 	//void notifySolutionIsReady(String name);
-	//void displayMazeSolution(Solution<Position> solution);
+	void displayMazeSolution(List<Position> solution);
 	//void printErrorMessage(String[] msg);
 	
 	

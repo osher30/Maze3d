@@ -1,5 +1,7 @@
 package view;
 
+import java.util.List;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -19,16 +21,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
-import properties.Properties;
-import properties.PropertiesLoader;
+import algorithms.mazeGenerators.Position;
+
 
 public class MazeWindow extends BasicWindow implements View {
 
 	private MazeDisplay mazeDisplay;
-//	private Character character;
 	private String mazeName;
-	//private String cmd = "";
-	private Properties prop;
 	
 	@Override
 	protected void initWidgets() {
@@ -86,10 +85,9 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
-				//	cmd = "display_solution";
 					setChanged();
 					notifyObservers("solve" + " " + mazeName + " " + "none");
-					
+					notifyObservers("display_solution" + " " + mazeName);
 				}
 			}
 			
@@ -146,7 +144,6 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
-					//cmd = "display_hint";
 					setChanged();
 					notifyObservers("solve " + mazeName);
 				}
@@ -407,11 +404,17 @@ public class MazeWindow extends BasicWindow implements View {
 
 	@Override
 	public void displayMessage(String msg) {
-		MessageBox messageBox = new MessageBox(shell);
-		setChanged();
-		messageBox.setText("message");
-		messageBox.setMessage(msg);
-		messageBox.open();
+		display.syncExec(new Runnable() {
+			
+			@Override
+			public void run() {
+				MessageBox messageBox = new MessageBox(shell);
+				setChanged();
+				messageBox.setText("Message");
+				messageBox.setMessage(msg);
+				messageBox.open();		
+			}
+		});
 	}
 	
 	@Override
@@ -435,6 +438,13 @@ public class MazeWindow extends BasicWindow implements View {
 			 
 			event.doit = false;
 		}
+		
+	}
+
+	@Override
+	public void displayMazeSolution(List<Position> solution) {
+		// TODO Auto-generated method stub
+		mazeDisplay.takeCharacterToExit(solution);
 		
 	}
 

@@ -1,8 +1,10 @@
 package presenter;
 
 import java.util.HashMap;
+import java.util.List;
 
 import algorithms.mazeGenerators.Maze3d;
+import algorithms.mazeGenerators.Position;
 import presenter.CommandsManager.DisplayCrossSectionCommand;
 import presenter.CommandsManager.LoadMaze;
 import presenter.CommandsManager.SaveMaze;
@@ -35,6 +37,7 @@ public class CommandsManager {
 		commands.put("dir", new dir());
 		commands.put("display_solution", new displaySolution());
 		commands.put("exit", new ExitCommand());
+		commands.put("display_message", new MessageCommand());
 		
 		return commands;
 	}
@@ -158,13 +161,25 @@ public class CommandsManager {
 		}
 	}
 	
+	class MessageCommand implements Command {
+
+		@Override
+		public void doCommand(String[] args) {
+			String msg = args[0];
+			view.displayMessage(msg);
+		}
+		
+	}
+
+	
 	public class displaySolution implements Command
 	{
 		@Override
 		public void doCommand(String[]args)
 		{
 			String name = args[0];
-			//model.displaySolution(name);
+			List<Position> solution = model.getSolution(name);
+			view.displayMazeSolution(solution);
 		}
 	}
 }

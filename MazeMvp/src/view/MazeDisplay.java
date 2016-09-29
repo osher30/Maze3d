@@ -11,7 +11,6 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
@@ -159,6 +158,12 @@ public class MazeDisplay extends Canvas {
 		timer.scheduleAtFixedRate(task, 0, 500);
 	}
 
+	public void takeCharacterToExit(List<Position> solution) {
+		for(Position pos : solution){
+		character.setPos(new Position(pos.getZ(), pos.getY(), pos.getX()));
+		redraw();
+		}
+	}
 }
 
 
