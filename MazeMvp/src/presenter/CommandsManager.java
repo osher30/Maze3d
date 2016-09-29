@@ -5,6 +5,7 @@ import java.util.List;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.serach.Solution;
 import presenter.CommandsManager.DisplayCrossSectionCommand;
 import presenter.CommandsManager.LoadMaze;
 import presenter.CommandsManager.SaveMaze;
@@ -92,9 +93,9 @@ public class CommandsManager {
 
 		@Override
 		public void doCommand(String[] args) {
-			String name = args[0];
-			int index = Integer.parseInt(args[1]);
-			Maze3d maze = model.getMaze(name);
+			//String name = args[0];
+			//int index = Integer.parseInt(args[1]);
+			//Maze3d maze = model.getMaze(name);
 			//view.displayCrossSection(maze ,index);
 			
 		}
@@ -178,7 +179,7 @@ public class CommandsManager {
 		public void doCommand(String[]args)
 		{
 			String name = args[0];
-			List<Position> solution = model.getSolution(name);
+			Solution<Position> solution = model.getSolution(name);
 			view.displayMazeSolution(solution);
 		}
 	}

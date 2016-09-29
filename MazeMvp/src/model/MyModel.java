@@ -238,10 +238,11 @@ public class MyModel extends Observable implements Model {
 	}
 
 	@Override
-	public List<Position> getSolution(String name) {
+	public Solution<Position> getSolution(String name) {
 		List<Position> sol=null;
-		sol = (List<Position>) mazesSolutions.get(name);
-		return sol;
+		Solution<Position> sol1 = mazesSolutions.get(name);
+		//sol = (List<Position>) mazesSolutions.get(name);
+		return sol1;
 		
 		
 	}

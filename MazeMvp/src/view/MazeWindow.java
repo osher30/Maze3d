@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Text;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.serach.Solution;
 
 
 public class MazeWindow extends BasicWindow implements View {
@@ -86,7 +87,8 @@ public class MazeWindow extends BasicWindow implements View {
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
 					setChanged();
-					notifyObservers("solve" + " " + mazeName + " " + "none");
+					//notifyObservers("solve" + " " + mazeName + " " + "none");
+					//setChanged();
 					notifyObservers("display_solution" + " " + mazeName);
 				}
 			}
@@ -364,6 +366,9 @@ public class MazeWindow extends BasicWindow implements View {
 				setChanged();
 				mazeName = txtName.getText();
 				notifyObservers("display" + " " + txtName.getText());
+				setChanged();
+				notifyObservers("solve" + " " + mazeName + " " + "none");
+				setChanged();
 				shell.close();
 			}
 
@@ -442,8 +447,7 @@ public class MazeWindow extends BasicWindow implements View {
 	}
 
 	@Override
-	public void displayMazeSolution(List<Position> solution) {
-		// TODO Auto-generated method stub
+	public void displayMazeSolution(Solution<Position> solution) {
 		mazeDisplay.takeCharacterToExit(solution);
 		
 	}

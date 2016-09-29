@@ -95,7 +95,7 @@ public class MyView extends Observable implements View, Observer {
 	}
 
 	@Override
-	public void displayMazeSolution(List<Position> solution) {
+	public void displayMazeSolution(Solution<Position> solution) {
 		if (solution == null) {
 			notifyObservers(String.format("Solution is not exist"));
 		} else {

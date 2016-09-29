@@ -4,6 +4,7 @@ import java.util.List;
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
+import algorithms.serach.Solution;
 
 public interface Model {
 	void generateMaze(String name,int floor, int rows, int cols);
@@ -12,5 +13,5 @@ public interface Model {
 	void saveMaze(Maze3d name, String fileName);
 	void loadMaze(String fileName, String name);
 	void exit();
-	List<Position> getSolution(String name);	
+	Solution<Position> getSolution(String name);	
 }
