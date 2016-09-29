@@ -35,6 +35,7 @@ import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
 import properties.Properties;
 import properties.PropertiesLoader;
+import view.MazeDisplay;
 
 public class MyModel extends Observable implements Model {
 	
@@ -59,9 +60,7 @@ public class MyModel extends Observable implements Model {
 				GrowingTreeGenerator generator = new GrowingTreeGenerator(new cellRandomSelector());
 				Maze3d maze = generator.generate(floor, rows, cols);
 				mazes.put(name, maze);
-				
 				setChanged();
-				
 				notifyObservers("maze_ready" + " " +  name);
 				return maze;
 			}

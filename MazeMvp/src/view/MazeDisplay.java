@@ -1,5 +1,6 @@
 package view;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -9,6 +10,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
@@ -21,16 +23,25 @@ public class MazeDisplay extends Canvas {
 	private int[][] mazeData;
 	private Maze3d maze;
 	private Character character;
+	private Image img;
+	
+	public void setStartPositionCharacter(Position pos){
+		character.setPos(pos);
+	}
 
+	public void setMaze(Maze3d maze){
+		this.maze = maze;
+	}
+	
 	public void setMazeData(int[][] mazeData) {
 		this.mazeData = mazeData;
 		this.redraw();
 	}
-	
+
 	public MazeDisplay(Composite parent, int style) {
+
 		super(parent, style);
 		character = new Character();
-		character.setPos(new Position(1, 1, 1));
 						
 		this.addKeyListener(new KeyListener() {
 			
@@ -43,57 +54,58 @@ public class MazeDisplay extends Canvas {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				Position pos = character.getPos();
-				//List<Position> moves = maze.getAllPosibleMoves(pos);
+				List<Position> moves = maze.getAllPosibleMoves(pos);
+				
 				switch (e.keyCode) {
 				case SWT.ARROW_RIGHT:
-					//if (moves.contains(new Position(pos.getZ(), pos.getY(), pos.getX() + 1)))
-					//{
+					if (moves.contains(new Position(pos.getZ(), pos.getY(), pos.getX() + 1)))
+					{
 					character.setPos(new Position(pos.getZ(), pos.getY(), pos.getX() + 1));
 					character.moveRight();
 					redraw();
-					//}
+					}
 					break;
 				
 				case SWT.ARROW_LEFT:	
-					//if (moves.contains(new Position(pos.getZ(), pos.getY(), pos.getX() - 1)))
-					//		{
+					if (moves.contains(new Position(pos.getZ(), pos.getY(), pos.getX() - 1)))
+							{
 					character.setPos(new Position(pos.getZ(), pos.getY(), pos.getX() - 1));
 					character.moveLeft();
 					redraw();
-						//	}
+							}
 					break;
 				
 				case SWT.ARROW_UP:	
-				//	if (moves.contains(new Position(pos.getZ(), pos.getY() + 1, pos.getX())))
-					//		{
+					if (moves.contains(new Position(pos.getZ(), pos.getY() - 1, pos.getX())))
+							{
 					character.setPos(new Position(pos.getZ(), pos.getY() - 1, pos.getX()));
 					character.moveForward();
 					redraw();
-						//	}
+							}
 					break;
 				case SWT.ARROW_DOWN:		
-			//		if (moves.contains(new Position(pos.getZ(), pos.getY() - 1, pos.getX())))
-				//	{
+					if (moves.contains(new Position(pos.getZ(), pos.getY() + 1, pos.getX())))
+					{
 					character.setPos(new Position(pos.getZ(), pos.getY() + 1, pos.getX()));
 					character.moveBackward();
 					redraw();
-				//	}
+					}
 					break;
 				case SWT.PAGE_UP:	
-			//		if (moves.contains(new Position(pos.getZ() + 1, pos.getY(), pos.getX())))
-			//		{
+					if (moves.contains(new Position(pos.getZ() + 1, pos.getY(), pos.getX())))
+					{
 					character.setPos(new Position(pos.getZ() - 1, pos.getY(), pos.getX()));
 					character.moveUp();
 					redraw();
-			//		}
+					}
 					break;
 				case SWT.PAGE_DOWN:		
-			//		if (moves.contains(new Position(pos.getZ() - 1, pos.getY(), pos.getX())))
-			//		{
+					if (moves.contains(new Position(pos.getZ() - 1, pos.getY(), pos.getX())))
+					{
 					character.setPos(new Position(pos.getZ() + 1, pos.getY(), pos.getX()));
 					character.moveDown();
 					redraw();
-			//		}
+					}
 					break;
 				default:
 					break;	
@@ -137,7 +149,6 @@ public class MazeDisplay extends Canvas {
 					@Override
 					public void run() {
 						
-						//character.moveRight();
 						redraw();
 					}
 				});

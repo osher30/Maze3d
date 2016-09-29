@@ -396,6 +396,8 @@ public class MazeWindow extends BasicWindow implements View {
 		int [][] mazeData = maze.getCrossSectionByZ(index);
 		mazeDisplay.forceFocus();
 		mazeDisplay.setMazeData(mazeData);
+		mazeDisplay.setStartPositionCharacter(maze.getStartPosition());
+		mazeDisplay.setMaze(maze);
 	}
 
 	@Override
