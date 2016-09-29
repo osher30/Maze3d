@@ -23,6 +23,7 @@ import algorithms.mazeGenerators.Maze3d;
 public class MazeWindow extends BasicWindow implements View {
 
 	private MazeDisplay mazeDisplay;
+	private Character character;
 	private String mazeName;
 	private String cmd = "";
 	
