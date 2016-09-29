@@ -25,7 +25,6 @@ import java.util.zip.GZIPOutputStream;
 import algorithms.demo.MazeAdapter;
 import algorithms.mazeGenerators.GrowingTreeGenerator;
 import algorithms.mazeGenerators.Maze3d;
-import algorithms.mazeGenerators.Maze3dGenerator;
 import algorithms.mazeGenerators.Maze3dGeneratorBase;
 import algorithms.mazeGenerators.Position;
 import algorithms.mazeGenerators.SimpleMaze3dGenerator;
@@ -38,7 +37,6 @@ import io.MyCompressorOutputStream;
 import io.MyDecompressorInputStream;
 import properties.Properties;
 import properties.PropertiesLoader;
-import view.MazeDisplay;
 
 public class MyModel extends Observable implements Model {
 	
@@ -203,14 +201,26 @@ public class MyModel extends Observable implements Model {
 			{
 				String algo = properties.getSolveMazeAlgorithm();
 				Searcher<Position> searchAlgo = null;
-				if (algorithm.equals("BFS") || algo.equals("BFS")) {
+				if(algorithm.equals("none")){
+					if(algo.equals("BFS")){
+						searchAlgo = new BFS<Position>();
+					} else if(algo.equals("DFS")){
+						searchAlgo = new DFS<Position>();
+					} else {
+						notifyObservers("Invalid algorithm was input.");
+						return;
+					}
+				}
+				else {
+				if (algorithm.equals("BFS")) {
 					searchAlgo = new BFS<Position>();
-				} else if(algorithm.equals("DFS") || algo.equals("DFS")) {
+				} else if(algorithm.equals("DFS")) {
 					searchAlgo = new DFS<Position>();
 				} else {
 					notifyObservers("Invalid algorithm, try with Capital laters.");
 					return;
 				}
+					}
 				
 				Maze3d maze = mazes.get(name);
 				if (maze == null) {

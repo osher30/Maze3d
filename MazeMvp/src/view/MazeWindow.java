@@ -89,6 +89,7 @@ public class MazeWindow extends BasicWindow implements View {
 				//	cmd = "display_solution";
 					setChanged();
 					notifyObservers("solve" + " " + mazeName + " " + "none");
+					
 				}
 			}
 			
