@@ -1,3 +1,4 @@
+
 package view;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
 
@@ -92,7 +94,7 @@ public class MazeDisplay extends Canvas {
 				case SWT.PAGE_UP:	
 					if (moves.contains(new Position(pos.getZ() + 1, pos.getY(), pos.getX())))
 					{
-					character.setPos(new Position(pos.getZ() - 1, pos.getY(), pos.getX()));
+					character.setPos(new Position(pos.getZ() + 1, pos.getY(), pos.getX()));
 					character.moveUp();
 					redraw();
 					}
@@ -100,7 +102,7 @@ public class MazeDisplay extends Canvas {
 				case SWT.PAGE_DOWN:		
 					if (moves.contains(new Position(pos.getZ() - 1, pos.getY(), pos.getX())))
 					{
-					character.setPos(new Position(pos.getZ() + 1, pos.getY(), pos.getX()));
+					character.setPos(new Position(pos.getZ() - 1, pos.getY(), pos.getX()));
 					character.moveDown();
 					redraw();
 					}
@@ -132,7 +134,7 @@ public class MazeDisplay extends Canvas {
 							   int y=i*h;
 							   if(mazeData[i][j]!=0)
 								   e.gc.fillRectangle(x,y,w,h);
-						   }		 
+						   }
 					   character.draw(w, h, e.gc);
 				   	}
 			}

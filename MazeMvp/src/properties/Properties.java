@@ -13,7 +13,6 @@ public class Properties implements Serializable {
 	
 	public Properties() {
 		
-		
 	}
 			
 	public int getNumOfThreads() {
