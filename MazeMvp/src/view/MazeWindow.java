@@ -23,9 +23,9 @@ import algorithms.mazeGenerators.Maze3d;
 public class MazeWindow extends BasicWindow implements View {
 
 	private MazeDisplay mazeDisplay;
-	private Character character;
+//	private Character character;
 	private String mazeName;
-	private String cmd = "";
+	//private String cmd = "";
 	
 	@Override
 	protected void initWidgets() {
@@ -48,7 +48,6 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				showGenerateMazeOptions();
-				//generateEvent(null);
 			}
 			
 			@Override
@@ -84,7 +83,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
-					cmd = "display_solution";
+				//	cmd = "display_solution";
 					setChanged();
 					notifyObservers("solve " + mazeName);
 				}
@@ -143,7 +142,7 @@ public class MazeWindow extends BasicWindow implements View {
 			@Override
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
-					cmd = "display_hint";
+					//cmd = "display_hint";
 					setChanged();
 					notifyObservers("solve " + mazeName);
 				}
@@ -216,17 +215,6 @@ public class MazeWindow extends BasicWindow implements View {
         exitItem.addListener(SWT.Selection, event-> {
         	exitEvent(null);
         });
-
-        //shell.setText("Simple menu");
-        //shell.setSize(300, 200);
-        //shell.open();
-
-       /* while (!shell.isDisposed()) {
-          if (!display.readAndDispatch()) {
-            display.sleep();
-          }
-        }*/
-
 	}
 
 	protected void LoadMaze() {
@@ -340,7 +328,7 @@ public class MazeWindow extends BasicWindow implements View {
 				setChanged();
 				notifyObservers("generate_maze" + " " + txtName.getText() + " " + txtFloors.getText()+ 
 						" " + txtRows.getText() + " " + txtCols.getText());
-			//	generateEvent(txtName.getText());
+
 				shell.close();
 			}
 			
@@ -460,19 +448,7 @@ public class MazeWindow extends BasicWindow implements View {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// Checkkkkkkkkkkkkkkkk
+
 /*	@Override
 	public void printAnswers(String[] msg) {
 

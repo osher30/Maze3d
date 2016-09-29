@@ -1,65 +1,5 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-/*
-import org.eclipse.swt.events.PaintEvent;
-import org.eclipse.swt.events.PaintListener;
-import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.widgets.Canvas;
-import org.eclipse.swt.widgets.Shell;
-
-import algorithms.mazeGenerators.Maze3d;
-
-public class MazeDisplay extends Canvas {
-	
-	private int[][] mazeData;
-	private Maze3d maze3d; 
-	protected boolean isWin = false; 
-	private Character character;
-	
-	public void setMazeData(int[][] mazeData) {
-		this.mazeData = mazeData;
-		this.redraw();
-	}
-	
-	public MazeDisplay(Shell parent, int style) {
-		super(parent, style);
-		
-		this.addPaintListener(new PaintListener() {
-			
-			
-			@Override
-			public void paintControl(PaintEvent e) {
-				if (mazeData == null)
-					return;
-				
-				   e.gc.setForeground(new Color(null,0,0,0));
-				   e.gc.setBackground(new Color(null,0,0,0));
-				   
-				   int width=getSize().x;
-				   int height=getSize().y;
-
-				   int w=width/mazeData[0].length;
-				   int h=height/mazeData.length;
-
-				   for(int i=0;i<mazeData.length;i++)
-				      for(int j=0;j<mazeData[i].length;j++){
-				          int x=j*w;
-				          int y=i*h;
-				          if(mazeData[i][j]!=0)
-				              e.gc.fillRectangle(x,y,w,h);
-				      }
-
-				
-			}
-		});
-	}
-}*/
-
-import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -71,26 +11,14 @@ import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
-//import org.eclipse.swt.widgets.List;
+
 
 import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 
 public class MazeDisplay extends Canvas {
 	
-	private int[][] mazeData = {
-			{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-			{1,0,0,0,0,0,0,0,1,1,0,1,0,0,1},
-			{0,0,1,1,1,1,1,0,0,1,0,1,0,1,1},
-			{1,1,1,0,0,0,1,0,1,1,0,1,0,0,1},
-			{1,0,1,0,1,1,1,0,0,0,0,1,1,0,1},
-			{1,1,0,0,0,1,0,0,1,1,1,1,0,0,1},
-			{1,0,0,1,0,0,1,0,0,0,0,1,0,1,1},
-			{1,0,1,1,0,1,1,0,1,1,0,0,0,1,1},
-			{1,0,0,0,0,0,0,0,0,1,0,1,0,0,1},
-			{1,1,1,1,1,1,1,1,1,1,1,1,0,1,1}		
-	};
-	
+	private int[][] mazeData;
 	private Maze3d maze;
 	private Character character;
 
@@ -180,24 +108,23 @@ public class MazeDisplay extends Canvas {
 				e.gc.setForeground(new Color(null,0,0,0));
 				   e.gc.setBackground(new Color(null,0,0,0));
 				   
+				   if(mazeData != null){
+					   
+					   int width=getSize().x;
+					   int height=getSize().y;
 
-				   int width=getSize().x;
-				   int height=getSize().y;
+					   int w=width/mazeData[0].length;
+					   int h=height/mazeData.length;
 
-				   int w=width/mazeData[0].length;
-				   int h=height/mazeData.length;
-
-				   for(int i=0;i<mazeData.length;i++)
-				      for(int j=0;j<mazeData[i].length;j++){
-				          int x=j*w;
-				          int y=i*h;
-				          if(mazeData[i][j]!=0)
-				              e.gc.fillRectangle(x,y,w,h);
-				      }
-				   
-				 
-				   character.draw(w, h, e.gc);
-				
+					   for(int i=0;i<mazeData.length;i++)
+						   for(int j=0;j<mazeData[i].length;j++){
+							   int x=j*w;
+							   int y=i*h;
+							   if(mazeData[i][j]!=0)
+								   e.gc.fillRectangle(x,y,w,h);
+						   }		 
+					   character.draw(w, h, e.gc);
+				   	}
 			}
 		});
 		
@@ -210,7 +137,7 @@ public class MazeDisplay extends Canvas {
 					@Override
 					public void run() {
 						
-						character.moveRight();
+						//character.moveRight();
 						redraw();
 					}
 				});
