@@ -1,7 +1,5 @@
 package view;
 
-import java.util.List;
-
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -147,7 +145,9 @@ public class MazeWindow extends BasicWindow implements View {
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
 					setChanged();
-					notifyObservers("solve " + mazeName);
+					mazeDisplay.setFlag(true);
+					setChanged();
+					mazeDisplay.redraw();
 				}
 
 			}
@@ -451,22 +451,7 @@ public class MazeWindow extends BasicWindow implements View {
 		mazeDisplay.takeCharacterToExit(solution);
 		
 	}
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+}
 	
 	
 
@@ -520,4 +505,3 @@ public class MazeWindow extends BasicWindow implements View {
 	}
 
 }*/
-}

@@ -20,7 +20,7 @@ import algorithms.mazeGenerators.Maze3d;
 import algorithms.mazeGenerators.Position;
 import algorithms.serach.Solution;
 import algorithms.serach.State;
-import presenter.CommandsManager.solveMaze;
+
 
 public class MazeDisplay extends Canvas {
 	
@@ -31,10 +31,16 @@ public class MazeDisplay extends Canvas {
 	private Position start;
 	private Position goal;
 	Image img1;
-	
+	Image ladder;
+	Image hint;
+	private boolean flag = false;
 	
 	public void setStartPositionCharacter(Position pos){
 		character.setPos(pos);
+	}
+
+	public void setFlag(boolean flag) {
+		this.flag = flag;
 	}
 
 	public void setMaze(Maze3d maze){
@@ -47,14 +53,15 @@ public class MazeDisplay extends Canvas {
 	
 	public void setMazeData(int[][] mazeData) {
 		this.mazeData = mazeData;
-		//this.redraw();
-	}
+			}
 
 	public MazeDisplay(Composite parent, int style) {
 
 		super(parent, style);
 		character = new Character();
-		img1=new Image(null,"lib/images/mushroom.jpg");		
+		img1=new Image(null,"lib/images/mushroom.jpg");
+		ladder = new Image(null, "lib/images/ladder.png");
+		hint = new Image(null, "lib/images/hint.png");
 		this.addKeyListener(new KeyListener() {
 			
 			@Override
@@ -152,16 +159,33 @@ public class MazeDisplay extends Canvas {
 								   e.gc.fillRectangle(x,y,w,h);
 							   }
 						   }
-					   //ARROWS
+					   //Ladders
+					   int [][][] temp = maze.getMaze3d();
+						   for(int y = 0;y<maze.getRow();y++)
+							   for(int x = 0;x<maze.getCols();x++)
+								   if(temp[currFloor][y][x] == 0){
+									   if(temp[currFloor+1][y][x] == 0 || temp[currFloor-1][y][x] == 0){
+										   Position pos = new Position(currFloor, y, x);
+										   e.gc.drawImage(ladder, 0, 0, ladder.getBounds().width, 
+												   ladder.getBounds().height,w*pos.getX(),pos.getY()*h, w, h);
+									   }
+									 //Mushroom for goal position
+									   if(currFloor == goal.getZ()){
+										   e.gc.drawImage(img1, 0, 0, img1.getBounds().width, img1.getBounds().height,w*goal.getX()
+												   ,goal.getY()*h, w, h);
+									   }
+									   
+									 //HINT
+									   /*while(flag){
+										   Position pos = new Position(currFloor, character.getPos().getY()
+												   , character.getPos().getX());
+										   
+										   e.gc.drawImage(hint, 0, 0, hint.getBounds().width, 
+												   hint.getBounds().height,w*pos.getX(),pos.getY()*h, w, h);
+										   flag = false;  
+									   }*/
+								   }
 					   character.draw(w, h, e.gc);
-					   e.gc.drawImage(img1, 0, 0, img1.getBounds().width, img1.getBounds().height,w*goal.getX()
-							   ,goal.getY()*h, w, h);
-					   
-					   //HINT
-					//   IF(FLAG==1){
-						   //DRAW CLUE
-					   //FLAG=0;
-					//   }
 				   	}
 			}
 		});
@@ -212,12 +236,6 @@ public class MazeDisplay extends Canvas {
 							character.setPos(state.getValue());
 							list.remove(0);
 							redraw();
-							/*for(State<Position> pos : list){
-								Position pos1 = pos.getValue();
-								character.setPos(new Position(pos1.getZ(), pos1.getY(), pos1.getX()));
-								redraw();
-								inde
-								x++;*/
 							
 				        }
 						else{
@@ -230,7 +248,7 @@ public class MazeDisplay extends Canvas {
 	};
 	Timer timer=new Timer();
 	timer.scheduleAtFixedRate(task,0,500);
-	}
+	}	
 }
 
 
