@@ -33,15 +33,10 @@ public class MazeDisplay extends Canvas {
 	Image img1;
 	Image ladder;
 	Image hint;
-	//private boolean flag = false;
 	
 	public void setStartPositionCharacter(Position pos){
 		character.setPos(pos);
 	}
-
-/*	public void setFlag(boolean flag) {
-		this.flag = flag;
-	}*/
 
 	public void setMaze(Maze3d maze){
 		this.maze = maze;
@@ -213,7 +208,6 @@ public class MazeDisplay extends Canvas {
 		List<State<Position>> list = solution.getStates();
 		list.remove(0);
 		
-		
 		TimerTask task=new TimerTask(){
 
 			@Override
@@ -238,7 +232,7 @@ public class MazeDisplay extends Canvas {
 							redraw();
 							
 				        }
-						else{
+						else{					
 							cancel();
 						}
 				}

@@ -24,7 +24,7 @@ public abstract class BasicWindow extends Observable implements Runnable {
  		shell.open(); 
  		 
  		// main event loop 
-		while(!shell.isDisposed()){ // while window isn't closed 
+ 		while(!shell.isDisposed()){ // while window isn't closed 
  		 
  		   // 1. read events, put then in a queue. 
  		   // 2. dispatch the assigned listener 

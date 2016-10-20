@@ -449,7 +449,7 @@ public class MazeWindow extends BasicWindow implements View {
 	@Override
 	public void displayMazeSolution(Solution<Position> solution) {
 		mazeDisplay.takeCharacterToExit(solution);
-		
+		notifyObservers("SuperMario get the mushroom !");		
 	}
 }
 	
