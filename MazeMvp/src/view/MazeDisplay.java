@@ -33,15 +33,15 @@ public class MazeDisplay extends Canvas {
 	Image img1;
 	Image ladder;
 	Image hint;
-	private boolean flag = false;
+	//private boolean flag = false;
 	
 	public void setStartPositionCharacter(Position pos){
 		character.setPos(pos);
 	}
 
-	public void setFlag(boolean flag) {
+/*	public void setFlag(boolean flag) {
 		this.flag = flag;
-	}
+	}*/
 
 	public void setMaze(Maze3d maze){
 		this.maze = maze;

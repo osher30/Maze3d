@@ -145,7 +145,7 @@ public class MazeWindow extends BasicWindow implements View {
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
 					setChanged();
-					mazeDisplay.setFlag(true);
+					//mazeDisplay.setFlag(true);
 					setChanged();
 					mazeDisplay.redraw();
 				}
