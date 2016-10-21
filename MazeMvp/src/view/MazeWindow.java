@@ -85,8 +85,6 @@ public class MazeWindow extends BasicWindow implements View {
 			public void widgetSelected(SelectionEvent arg0) {
 				if (mazeName != null) {
 					setChanged();
-					//notifyObservers("solve" + " " + mazeName + " " + "none");
-					//setChanged();
 					notifyObservers("display_solution" + " " + mazeName);
 				}
 			}
